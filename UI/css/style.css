@@ -23,7 +23,7 @@ ul{
     background: #e8491d;
     border:0;
     border-radius: 4px;
-    width:100px;
+    /* width:100px; */
     padding-left: 20px;
     padding-right: 20px;
     margin-right: 10px;
@@ -163,7 +163,7 @@ header .highlight,section .highlight, header .current a{
 /*landing div*/
 #wrap {
     /* background: #e7e7e7; */
-    background: url(../img/wallpaper2.jpg) no-repeat 0 0;
+    background: url(../img/wallpaper2.jpg) repeat-y 0 0;
     display: flex;
     justify-content: center;
     padding: 40px; 
