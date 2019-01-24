@@ -52,3 +52,11 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidepanel").style.width = "0";
 }
+
+var deleteParty = document.getElementById("partyName");
+deleteParty.onclick = deletePartyData;
+var partyMsg = document.getElementById("partyMsg");
+
+function deletePartyData() {
+  alert('party Deleted');
+} 
