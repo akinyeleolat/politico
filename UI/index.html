@@ -20,12 +20,13 @@
         </div>
         <div id="right">
                 <div class="pageform">
-                <form>
+                <form id="loginForm">
                 <img src="./img/thumb2.jpg" width="100px">
                 <h1>Sign in to Politico</h1>
-                <p><input type="email" placeholder="Email"></p>
-                <p><input type="password" placeholder="Password"></p>
-                <p><input type="submit" value="Login" class="button_1"></p>
+                <p><input type="email" id="email" placeholder="Email" required></p>
+                <p><input type="password" id="password" placeholder="Password" required></p>
+                <p><input type="submit" id="loginBtn" value="Login" class="button_1"></p>
+                <p id="responseMsg"></p>
                 <p style="text-align: right"><a href="signup.html">CREATE ACCOUNT</a> | <a href="password.html">Forgot
                             Password
                         </a></p>
@@ -39,5 +40,5 @@
             <p>Politico, Copyright &copy; 2019</p>
         </footer>
 </body>
-
+<script src="./js/login.js"></script>
 </html>
