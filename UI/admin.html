@@ -7,6 +7,7 @@
     <title> Politico | Welcome </title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
 <body style="background:#35424a">
@@ -14,49 +15,49 @@
       <div id="pagewrap">
           <div id="pageleft">
               <div class="sidebar">
-                    <div id="mySidepanel" class="sidepanel">
-                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                            <a href=""><img src="./img/icons/icon_edit.png">Add/Edit Menu</a>
-                            <a href="#"><img src="./img/icons/icon-configure.png">Edit User Profile</a>
-                            <a href="./order.html"><img src="./img/icons/icon-16-new.png">Manage Order</a>
-                            <a href="./index.html"><img src="./img/icons/icon-16-deny.png">Sign Out</a>
-                          </div>
-                          <button class="openbtn" onclick="openNav()">☰ <img src="./img/icons/icon_users.png">Welcome, Admin </button>
+                    <p><img src="img/thumb1.png" width="50px"><b>POLITICO</b></p>
+                          <button class="openbtn">☰ <img src="./img/icons/icon_users.png">Welcome, Admin </button>
+                          
                   
-                  <a class="active" href="#home">Home</a>
-                  <a href="#news">News</a>
-                  <a href="#about">About</a>
-                  <a href="#services">Services</a>
-                  <a href="#clients">Clients</a>
-                  <a href="#contact">Contact</a>
-                  <button class="dropdown-btn">Dropdown 
+                  <a class="active" href="#home"><i class="fas fa-home"></i>Home</a>
+                  <button class="dropdown-btn"><i class="fas fa-user-circle"></i>  Party 
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="#"><i class="fas fa-plus-circle"></i> Create New</a>
+                    <a href="#"><i class="fas fa-search"></i> View</a>
+                    <a href="#"><i class="fas fa-pen-square"></i> Edit</a>
                   </div>
-                  <a href="#contact">Search</a>
+                  <button class="dropdown-btn"><i class="fas fa-briefcase"></i>  Office
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-container">
+                    <a href="#"><i class="fas fa-plus-circle"></i> Create New</a>
+                    <a href="#"><i class="fas fa-search"></i> View</a>
+                    <a href="#"><i class="fas fa-pen-square"></i> Edit</a>
+                  </div>
+                  <a href="#contact"><i class="fas fa-search"></i> Contact</a>
+                  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
       </div>
       <div id="pageright">
           <section id="newsletter">
-                        <div class="container">                        
-                          <form>
-                            <input type="text" placeholder="Search" />
-                            <button type="submit" class="button_1">Search</button>
-                          </form>
+                        <div class="container">                       
+                          
+                            <button class="openbtn" style="float:right;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        
+                          
                         </div>
                       </section>
           <div class="content">
                 
-              <h2>Responsive Sidebar Example</h2>
-              <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-              <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-              <h3>Resize the browser window to see the effect.</h3>
+              
               <div class="dashboardcontainer">
                   <button class="button_1" id="myBtn" style="float:right;"><i class="fas fa-plus-square"> CREATE NEW PARTY</i></button>
+                  <form style="float:right;">
+                        <input type="text" placeholder="Search" />
+                        <button type="submit" class="button_1">Search</button>
+                      </form>
                 
             <section id="partyList">     
             <h1><i class="fas fa-users"></i> Parties</h1>
@@ -143,6 +144,10 @@
             </div>
             <div class="dashboardcontainer">
                     <button class="button_1" id="officeBtn" style="float:right;"><i class="fas fa-plus-square"> CREATE NEW OFFICE </i></button> 
+                    <form style="float:right;">
+                            <input type="text" placeholder="Search" />
+                            <button type="submit" class="button_1">Search</button>
+                          </form>
                 <section id="officeList">
                         <h1><i class="fas fa-users"></i> Office</h1>
                         <!-- <h3><i class="fas fa-users"></i> Federal</h3> -->
@@ -219,23 +224,6 @@
         </div>
       
       </div>
-<script>
-                /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-                var dropdown = document.getElementsByClassName("dropdown-btn");
-                var i;
-                
-                for (i = 0; i < dropdown.length; i++) {
-                  dropdown[i].addEventListener("click", function() {
-                  this.classList.toggle("active");
-                  var dropdownContent = this.nextElementSibling;
-                  if (dropdownContent.style.display === "block") {
-                  dropdownContent.style.display = "none";
-                  } else {
-                  dropdownContent.style.display = "block";
-                  }
-                  });
-                }
-                </script>
 </body>
 <script src="./js/adminpage.js"></script>
 </html>

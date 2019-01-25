@@ -199,6 +199,11 @@ header .highlight,section .highlight, header .current a{
     height: 100%;
     border-bottom: 2px solid #a12e0f;
   }
+  #partyList .card button{
+      height: 20px;
+      margin-left: 0px;
+      margin-right: 0px;
+  }
   
   #partyList .container{
     padding: 2px 16px;
@@ -507,14 +512,22 @@ header .highlight,section .highlight, header .current a{
   
   .sidebar a {
     display: block;
-    color: black;
+    color: #fff;
     padding: 16px;
     text-decoration: none;
+    border:1px solid #ccc;
   }
    
   .sidebar a.active {
     background-color: #4CAF50;
     color: white;
+  }
+  .sidebar p{
+    background:#fff;
+    font-size:0.8em;
+    color:#a12e0f;
+    text-align:center;
+    border: 1px solid #ccc;
   }
   
   .sidebar a:hover:not(.active) {
@@ -536,15 +549,16 @@ header .highlight,section .highlight, header .current a{
   .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 20px;
-    color: #818181;
+    /* font-size: 15px; */
+    color: #fff;
     display: block;
-    border: none;
+    border: 1px solid #ccc;
     background: none;
     width: 100%;
     text-align: left;
     cursor: pointer;
     outline: none;
+    padding:16px;
   }
   
   /* On mouse-over */
@@ -555,7 +569,7 @@ header .highlight,section .highlight, header .current a{
   .dropdown-container {
     display: none;
     background-color: #262626;
-    padding-left: 8px;
+    /* padding-left: 8px; */
   }
   
   /* Optional: Style the caret down icon */
@@ -1114,12 +1128,13 @@ footer{
 }
 
 .openbtn {
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
     background-color: inherit;
     color: white;
     padding: 10px 15px;
-    border: none;
+    /* width:100%; */
+    border: 1px solid #35424a;
 }
 
 .openbtn:hover {
