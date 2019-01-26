@@ -3,9 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import debug from 'debug';
-// import path from 'path';
-// import router from './routes';
-const log = debug('app');
+import router from './routes';
+
+const debugg = debug('app');
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -27,7 +27,8 @@ app.use('*', (err, req, res, next) => {
   });
   next();
 });
+app.use('/api/v1', router);
 app.listen(port, () => {
-  log(`Running on port ${port}...`);
+  console.log(`Running on port ${port}...`);
 }); 
 export default app;
