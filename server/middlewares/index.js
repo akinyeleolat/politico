@@ -1,7 +1,9 @@
 import validateCreateParty from './validateCreateParty';
+import validateUpdateParty from './validateUpdateParty';
 
 const middlewares = {
-    validateCreateParty
+    validateCreateParty,
+    validateUpdateParty
   };
   
   export default middlewares;
