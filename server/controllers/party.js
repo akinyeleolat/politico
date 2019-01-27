@@ -69,6 +69,40 @@ class PartyController {
       message: 'Party Created',
     });
   };
+  /**
+ * @function updateParty
+ * @memberof PartyController
+ * @static
+ */
+static updateParty(req, res) {
+    const { id } = req.params;
+    const partyId = Number(id);
+    let { partyName, partyDetail } = req.body;
+    partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
+    partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
+    
+    const partyDetails = party.find(c => c.id === partyId);
+    if (!partyDetails) {
+      res.status(404).send({
+        status: 404,
+        error: 'The party with given id was not found',
+      });
+      return;
+    }
+      const arrayIndex = partyId - 1;
+      const newPartyDetail = {
+        id: partyId,
+        partyName,
+        partyDetail
+      };
+      party[arrayIndex] = newPartyDetail;
+      res.status(200).send({
+        status: 200,
+        data: newPartyDetail,
+        message: `party's name updated to ${partyName}`,
+      });
+      return;
+    }
   
 }
 
