@@ -22,7 +22,7 @@ class PartyController {
  * @memberof PartyController
  * @static
  */
-  static getParty (req,res){
+  static getParty(req,res){
     let { id } = req.params;
     if(isNaN(id)){
         res.status(404).send({
@@ -46,6 +46,30 @@ class PartyController {
       message: `Party's Details Retrieved`,
     });
   };
+  /**
+ * @function createParty
+ * @memberof PartyController
+ * @static
+ */
+ static createParty(req, res){
+    let { partyName, partyDetail,logoUrl } = req.body;
+    partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
+    partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
+    logoUrl = logoUrl ? logoUrl.toString().replace(/\s+/g, '') : logoUrl;
+    const newParty = {
+      id: party.length + 1,
+      partyName,
+      partyDetail,
+      logoUrl
+    };
+    party.push(newParty);
+    return res.status(201).send({
+      status: 201,
+      newParty,
+      message: 'Party Created',
+    });
+  };
+  
 }
 
 export default PartyController;
