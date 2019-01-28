@@ -37,7 +37,7 @@ class PartyController {
     if (!partyDetails) {
       res.status(404).send({
         status: 404,
-        message: 'The party with given id was not found',
+        error: 'The party with given id was not found',
       });
       return;
     }
