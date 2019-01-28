@@ -3,7 +3,7 @@ import { offices } from '../models/offices';
 /** office controller class */
 
 class OfficeController {
-    
+
   /**
  * @function getAllOffices
  * @memberof OfficeController
@@ -17,20 +17,21 @@ class OfficeController {
       message: 'Offices Retrived',
     });
   }
-/**
+
+  /**
  * @function getOffice
  * @memberof OfficeController
  * @static
  */
-static getOffice(req,res){
-    let { id } = req.params;
-    if(isNaN(id)){
-        res.status(404).send({
-            status: 404,
-            message:'Enter the correct party parameter'
-        })
-        return;
-    } 
+  static getOffice(req, res) {
+    const { id } = req.params;
+    if (isNaN(id)) {
+      res.status(404).send({
+        status: 404,
+        message: 'Enter the correct party parameter',
+      });
+      return;
+    }
     const officeId = Number(id);
     const officeDetails = offices.find(c => c.id === officeId);
     if (!officeDetails) {
@@ -43,10 +44,31 @@ static getOffice(req,res){
     res.status(200).send({
       status: 200,
       data: officeDetails,
-      message: `Party's Details Retrieved`,
+      message: 'Party\'s Details Retrieved',
     });
-  };
-  
+  }
+
+  /**
+ * @function createOffice
+ * @memberof OfficeController
+ * @static
+ */
+ static createOffice(req, res) {
+    let { officeName, officeType } = req.body;
+    officeName = officeName ? officeName.toString().replace(/\s+/g, ' ') : officeName;
+    officeType = officeType ? officeType.toString().toLowerCase().replace(/\s+/g, '') : officeType;
+    const newOffice = {
+      id: offices.length + 1,
+      officeName,
+      officeType,
+    };
+    offices.push(newOffice);
+    res.status(201).send({
+      status: 201,
+      data: newOffice,
+      message: 'Office Created',
+    });
+  }
 }
 
 export default OfficeController;
