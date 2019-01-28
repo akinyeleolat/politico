@@ -9,36 +9,61 @@
 </head>
 
 <body>
-    <main>
-        <div id="wrap">
-            <div id="left">
-                    <div class="pageform">
-            <h1>Hello Friend!</h1>
-                    Politico is an online voting app which enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
-                    <p><a href="./signup.html"><button class="button_2">Sign Up</button></a></p>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+            </nav>
+            <div id="branding">
+                <h1><img src="img/thumb1.png" width="30px"><span class="highlight">Politico</span> </h1>
             </div>
+            
         </div>
-        <div id="right">
-                <div class="pageform">
-                <form id="loginForm">
-                <img src="./img/thumb2.jpg" width="100px">
-                <h1>Sign in to Politico</h1>
-                <p><input type="email" id="email" placeholder="Email" required></p>
-                <p><input type="password" id="password" placeholder="Password" required></p>
-                <p><input type="submit" id="loginBtn" value="Login" class="button_1"></p>
-                <p id="responseMsg"></p>
-                <p style="text-align: right"><a href="signup.html">CREATE ACCOUNT</a> | <a href="password.html">Forgot
-                            Password
-                        </a></p>
-                <p></p>
-            </form>
-        </div>
-        </div>
-    </div>
+    </header>
+    <main class="content">
+        <section id="showcase">
+            <div class="container">
+                <h1><span class="highlight">e-Voting</span></h1>
+                <p>Politico is an online voting app which enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency. The Online fulcrum for politicians, voters and electoral body.
+                </p>
+                
+            </div>
+        </section>
+        <section id="newsletter">
+            <div class="container">
+                <h1>Get Updates</h1>
+                <form>
+                    <input type="email" placeholder="Enter Email" />
+                    <button type="submit" class="button_1">Subscribe</button>
+                </form>
+            </div>
+        </section>
+        <section id="boxes">
+            <div class="container">
+                <h1><span class="highlight">How it Works</span></h1>
+                <div class="box">
+                    <h3>Create An Account</h3>
+                    <img src="./img/userprofile.jpg">
+                    <p>Create an account as voters or politician</p>
+                </div>
+                <div class="box">
+                    <h3>Choose your favorite party</h3>
+                    <img src="./img/userprofile.jpg">
+                    <p>Sign up in any political party of your choice</p>
+                </div>
+                <div class="box">
+                    <h3>Exercise your right</h3>
+                    <img src="./img/thumb3.jpg">
+                    <p>You have right to vote and be voted for. It's easier with politico online voting app</p>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
-            <p>Politico, Copyright &copy; 2019</p>
-        </footer>
+        <p>Politico, Copyright &copy; 2019</p>
+    </footer>
 </body>
-<script src="./js/login.js"></script>
+
 </html>
