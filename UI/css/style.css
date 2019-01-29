@@ -824,6 +824,14 @@ header .highlight,section .highlight, header .current a{
     color:#fff;
     background: #a12e0f;
 }
+#newsletter a{
+color: #fff;
+text-decoration: none;
+}
+#newsletter a:visited{
+    color: #fff;
+    text-decoration: none;
+    }
 #newsletter h1{
     float:left;
 }
@@ -849,6 +857,7 @@ header .highlight,section .highlight, header .current a{
 }
 #newsletter button{
     border: 1px solid #fff;
+    /* border: 0; */
 }
 /* boxes*/
 #boxes{
@@ -1187,9 +1196,32 @@ footer{
 }
 
 .openbtn:hover {
-    background-color:#a12e0f;
+    background-color:#e8491d;
 }
-
+/*profile*/
+.profilecontainer{
+    overflow:hidden;
+    width:500px;
+}
+.profileflex-container {
+    display: flex;
+    float: right;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    color:#a12e0f;
+    /* border: 1px solid #2196f3; */
+  }
+  
+  .profileflex-container > div {
+    background-color: #f1f1f1;
+    margin: 5px;
+    text-align: left;
+    line-height: 30px;
+    font-size: 11px;
+  }
+  
 /* Media Queries*/
 @media(max-width:768px){
     header #branding,
