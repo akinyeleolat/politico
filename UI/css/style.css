@@ -12,8 +12,8 @@ body{
     min-height:100%;
 }
 .dashboardcontainer{
-    width:100%;
-    margin:auto;
+    margin-left:10px;
+    margin-right:10px;
     overflow:hidden;
     min-height:100%;
     background: #fff;
@@ -21,8 +21,25 @@ body{
     padding:5px;
     margin-top: 20px;
 }
+.dashboardcontainer input[type="text"]{
+    width:200px;
+    height:38px;
+    padding-left:5px;
+    /* padding: 14px; */
+    border: 1px solid #e8491d;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* margin-top: 6px; */
+    /* margin-bottom: 6px; */
+    margin-right:6px;
+    /* background: lightyellow; */
+    font-size: 15px;
+    font-family: FontAwesome;
+    
+}
 .content {
   min-height: calc(100vh - 70px);
+  width:100%;
 }
 ul{
     padding:0;
@@ -87,7 +104,7 @@ ul{
     margin-bottom: 10px;
 }
 .pageform{
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin: 0 auto;
     position: relative;
     margin-bottom:6px;
@@ -100,15 +117,16 @@ ul{
     }
 .pageform input[type="text"],input[type="password"],input[type="email"],input[type="tel"],textarea, select
     {
-    width:90%;
+    width:200px;
     height:40px;
     padding-left:5px;
-    padding: 14px;
+    /* padding: 14px; */
     border: 1px solid #e8491d;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    /* margin-top: 6px; */
+    /* margin-bottom: 6px; */
+    margin-right:6px;
     background: lightyellow;
     font-size: 15px;
     font-family: FontAwesome;
@@ -157,13 +175,13 @@ header li{
     padding: 0 20px 0 20px;
 }
 header #branding{
-    float:right;
+    float:left;
 }
 header #branding h1{
     margin:0;
 }
 header nav{
-    float:left;
+    float:right;
     margin-top: 10px;
 }
 header .highlight,section .highlight, header .current a{
@@ -375,8 +393,8 @@ header .highlight,section .highlight, header .current a{
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    border-radius: 10px 10px 0 0;
-    width: 50%;
+    /* border-radius: 10px 10px 0 0; */
+    /* width: 50%; */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -416,14 +434,14 @@ header .highlight,section .highlight, header .current a{
     padding: 2px 16px;
     background-color: #a12e0f;
     color: white;
-    border-radius: 10px 10px 0 0;
+    /* border-radius: 10px 10px 0 0; */
   }
   
   
   .modal-body {
-      padding: 2px 16px;
-      border-left: 1px solid #a12e0f;
-      border-right: 1px solid #a12e0f;
+      /* padding: 2px 16px; */
+      /* border-left: 1px solid #a12e0f;
+      border-right: 1px solid #a12e0f; */
     }
   
   .modal-footer {
@@ -635,7 +653,7 @@ header .highlight,section .highlight, header .current a{
 }
 
 #pageleft {
-    background: #000;
+    background: #a12e0f;
     /* background: url(../img/wallpaper3.jpg) no-repeat 0 0; */
     color: #fff;
     width:200px;
@@ -649,12 +667,20 @@ header .highlight,section .highlight, header .current a{
 }
 /*Showcase*/
 #showcase{
-    min-height: calc(100vh);
+    min-height: 100vh;
     background: url(../img/vote5.jpg) no-repeat 0 0;
     text-align: left;
     color:#fff;
     border-bottom: #e8491d 3px solid;
 }
+
+#showcase div{
+    float: left;
+    width: 50%;
+    margin: 10px auto;
+    padding: 20px;
+    }
+
 #showcase h1{
     margin-top:100px;
     font-size: 55px;
@@ -802,7 +828,7 @@ header .highlight,section .highlight, header .current a{
     float:right;
     margin-top:5px;
 }
-#newsletter input[type="email"],input[type="text"]{
+#newsletter input[type="email"],#newsletter input[type="text"]{
     padding:4px;
     width:200px;
     height: 25px;
@@ -940,7 +966,7 @@ header .highlight,section .highlight, header .current a{
     color: white;
     font-size: 15px; 
 }
-#userOrder input[type="email"],input[type="text"],select{
+#userOrder input[type="email"],#userOrder  input[type="text"],#userOrder  select{
     width:200px;
     color:#35424a;
     height:40px;
@@ -1016,12 +1042,16 @@ ul#page_item li{
 }
 /* footer*/
 footer{
-    padding:5px;
+    padding:20px;
     margin-top:0px;
     text-align: center;
     color:#fff;
     background-color:#a12e0f;
-    height: 30px;
+    height: 50px;
+    /* width: 100%; */
+    /* position: sticky; */
+    left: 0;
+    bottom: 0;
 }
 
 /* W3schools tutorial*/
@@ -1082,16 +1112,19 @@ footer{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+.modal button{
+    width:100px;
+}
 
 /* Modal Content */
+
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #888;
-    width: 80%;
+    width: 30%;
 }
-
 /* The Close Button */
 .close {
     color: #aaaaaa;
@@ -1174,6 +1207,13 @@ footer{
     header{
         padding:20px;
     }
+    #showcase{
+        min-height: auto;
+    }
+    #showcase div{
+        float: none;
+        width: 80%;
+    }
     #showcase h1{
         margin-top:40px;
         font-size: 30px;
@@ -1185,7 +1225,7 @@ footer{
         display:block;
         width:100%;
     }
-    #newsletter input[type="email"],input[type="text"],.quote input,.quote textarea{
+    #newsletter input[type="email"],#newsletter input[type="text"],.quote input,.quote textarea, .pageform{
         width:100%;
         margin-bottom: 5px;
     }
@@ -1206,11 +1246,7 @@ footer{
         font-size: 12px;
         color:#e8491d;
       }
-    #userOrder .card th, td {
-    text-align: left;
-    font-size:12px;
-    /* padding: 5px; */
-     }
+  
      #partyList .card th, .card td {
         text-align: left;
         font-size:12px;

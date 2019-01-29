@@ -48,7 +48,7 @@ editBtn.onclick = function(){
   headerTitle.innerHTML = "EDIT PARTY";
   pName = "NYP";
   hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">Upload New Logo</button></a></p>
+  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
   <p><input type="text" id="pName" value=${pName} placeholder="Party Name"></p>
   <p><textarea  id="hqAddress" placeholder="Headquarter Address"> ${hqAddress}</textarea></p>
   <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p>`;
