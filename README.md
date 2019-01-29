@@ -34,7 +34,22 @@ Politico app project is broken down into small task with pivotal tracker board. 
 NA
 
 # UI Templates
-The application is hosted online on gh-pages with [Mobile Buka] (https://akinyeleolat.github.io/politico/UI/)
+The application is hosted online on gh-pages with [ Politico ] (https://akinyeleolat.github.io/politico/UI/)
+LOGIN TO DEMO ADMIN
+<ul>
+<li>username:admin@gmail.com</li>
+<li>password:admin</li>
+</ul>
+LOGIN TO DEMO POLITICIAN
+<ul>
+<li>username:politician@gmail.com</li>
+<li>password:admin</li>
+</ul>
+LOGIN TO DEMO USER
+<ul>
+<li>username:oluwatosin@gmail.com</li>
+<li>password:admin</li>
+</ul>
 
 # API Documentation
 to be added later
@@ -69,42 +84,42 @@ Currently,
   </tr>
   <tr>
     <td>POST</td>
-    <td>api/v1/party/</td>
+    <td>api/v1/parties/</td>
     <td>Create A Political Party</td>
   </tr>
   <tr>
     <td>POST</td>
-    <td>api/v1/office/</td>
+    <td>api/v1/offices/</td>
     <td>Create A Political Office</td>
   </tr>
    <tr>
     <td>PATCH</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Edit a specific political party</td>
   </tr>
   <tr>
     <td>DELETE</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Delete a specific political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/party/</td>
+    <td>api/v1/parties/</td>
     <td>Get all political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Get specific political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/office</td>
+    <td>api/v1/offices</td>
     <td>Get all political office</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/office/officeId</td>
+    <td>api/v1/offices/officeId</td>
     <td>Get specific political office</td>
   </tr>
   </table>
