@@ -29,6 +29,7 @@ var officeForm = document.getElementById("getForm");
 var btn = document.getElementById("myBtn");
 var editBtn = document.getElementById("editParty");
 var officeBtn = document.getElementById("officeBtn");
+var deleteParty = document.getElementById("partyName");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -48,7 +49,7 @@ editBtn.onclick = function(){
   headerTitle.innerHTML = "EDIT PARTY";
   pName = "NYP";
   hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">Upload New Logo</button></a></p>
+  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
   <p><input type="text" id="pName" value=${pName} placeholder="Party Name"></p>
   <p><textarea  id="hqAddress" placeholder="Headquarter Address"> ${hqAddress}</textarea></p>
   <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p>`;
@@ -64,6 +65,16 @@ officeBtn.onclick = function() {
       <option value="LGA">Local Government</option>
     </select></p>
   <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>`
+}
+deleteParty.onclick = function() {
+  modal.style.display = "block";
+  headerTitle.innerHTML = "DELETE PARTY ?";
+  pName = "NYP";
+  hqAddress = "IKEJA,LAGOS";
+  officeForm.innerHTML =`
+  <p><input type="text" id="pName" value=${pName} placeholder="Party Name" readonly></p>
+  <p><textarea  id="hqAddress" placeholder="Headquarter Address" readonly> ${hqAddress}</textarea></p>
+  <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p>`;
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -106,7 +117,7 @@ function closeNav() {
 }
 
 var deleteParty = document.getElementById("partyName");
-deleteParty.onclick = deletePartyData;
+// deleteParty.onclick = deletePartyData;
 var partyMsg = document.getElementById("partyMsg");
 
 function deletePartyData() {

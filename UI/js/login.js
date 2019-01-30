@@ -10,11 +10,15 @@ const loginUser = (event) => {
     else {
         const adminHome = './admin.html';
         const userHome = './userhome.html';
+        const polHome = './pol-home.html';
         if(email =='admin@gmail.com' && password=='admin'){
             window.location.replace(`${adminHome}`)
         }
        else if(email =='oluwatosin@gmail.com' && password=='admin'){
            window.location.replace(`${userHome}`)
+       }
+       else if(email =='politician@gmail.com' && password=='admin'){
+        window.location.replace(`${polHome}`)
        }
        else{
         document.getElementById('responseMsg').innerHTML = 'Incorrect username and password';
