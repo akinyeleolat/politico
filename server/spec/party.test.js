@@ -52,11 +52,11 @@ describe('GET SELECTED PARTIES /api/v1/parties/:id', () => {
     partyId = 's';
     request
       .get(`/api/v1/parties/${partyId}`)
-      .expect(404)
+      .expect(400)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end((err, res) => {
         expect(res.body).deep.equal({
-          status: 404,
+          status: 400,
           error: 'Enter the correct party parameter',
         });
         if (err) done(err);
@@ -175,6 +175,14 @@ describe('POST PARTY /api/v1/parties', () => {
       .expect(400)
       .end(done);
   });
+  it('Party details that is number should return 400', (done) => {
+    const newParty = test.partyData10;
+    request
+      .post('/api/v1/parties')
+      .send(newParty)
+      .expect(400)
+      .end(done);
+  });
   it('should return  order in JSON format', (done) => {
     const newParty = test.partyData1;
     request
@@ -192,11 +200,11 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
     newData = test.partyData1;
     request
       .patch(`/api/v1/parties/${partyId}/name`)
-      .expect(404)
+      .expect(400)
       .send(newData)
       .end((err, res) => {
         expect(res.body).deep.equal({
-          status: 404,
+          status: 400,
           error: 'Enter the correct party parameter',
         });
         if (err) done(err);
@@ -210,7 +218,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(200)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH NO VALID ID should return  status 400', (done) => {
     partyId = party.length + 1;
@@ -219,7 +227,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(404)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY DETAIL should return  status 400', (done) => {
     partyId = party.length - 1;
@@ -228,7 +236,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY PARTY NAME should return  status 400', (done) => {
     partyId = party.length - 1;
@@ -237,7 +245,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH VALID ID BUT PARTY NAME with spaces should return  status 400', (done) => {
     partyId = party.length - 1;
@@ -246,7 +254,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY PARTY DETAIL should return  status 400', (done) => {
     partyId = party.length - 1;
@@ -255,7 +263,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('PARTY WITH VALID ID BUT PARTY DETAIL with spaces should return  status 400', (done) => {
     partyId = party.length - 1;
@@ -264,7 +272,7 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
-      .end(done)
+      .end(done);
   });
   it('should return a JSON', (done) => {
     partyId = party.length - 1;
@@ -273,6 +281,45 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .send(newData)
-      .end(done)
+      .end(done);
   });
 });
+describe('DELETE PARTIES /api/v1/parties/:id', () => {
+  let partyId = '';
+  it('PARTY WITH ID THAT ISNAN should return  status 400', (done) => {
+    partyId = 's';
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(400)
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 400,
+          error: 'Enter the correct party parameter',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('PARTY WITH VALID ID should return  status 200', (done) => {
+    partyId = party.length - 1;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(200)
+      .end(done);
+  });
+  it('PARTY WITH NO VALID ID should return  status 404', (done) => {
+    partyId = party.length + 2;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(404)
+      .end(done);
+  });
+  it('should return a JSON', (done) => {
+    partyId = party.length - 1;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+});
+

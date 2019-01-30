@@ -26,8 +26,8 @@ class PartyController {
   static getParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
+      res.status(400).send({
+        status: 400,
         error: 'Enter the correct party parameter',
       });
       return;
@@ -80,8 +80,8 @@ class PartyController {
   static updateParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
+      res.status(400).send({
+        status: 400,
         error: 'Enter the correct party parameter',
       });
       return;
@@ -122,9 +122,9 @@ class PartyController {
   static deleteParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
-        message: 'Enter the correct party parameter',
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
       });
       return;
     }
@@ -133,13 +133,11 @@ class PartyController {
     if (!partyDetails) {
       res.status(404).send({
         status: 404,
-        message: 'The party with given id was not found',
+        error: 'The party with given id was not found',
       });
       return;
     }
     const filteredParty = party.filter(parties => parties !== partyDetails);
-    // const filteredParty = party.slice(0, partyId-1).concat(party.slice(partyId, party.length))
-
     res.status(200).send({
       status: 200,
       message: `${partyDetails.partyName} deleted`,

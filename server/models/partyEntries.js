@@ -54,7 +54,7 @@ export const partyData5 = {
 * */
 export const partyData6 = {
   partyName: 212,
-  partyDetail: 223,
+  partyDetail,
   logoUrl,
 };
 /**
@@ -83,4 +83,13 @@ export const partyData9 = {
   partyName,
   partyDetail,
   logoUrl: 'www.logourl/asd',
+};
+/**
+* This is party name and detail that is number
+* @exports partyData10
+* */
+export const partyData10 = {
+  partyName,
+  partyDetail: 123,
+  logoUrl,
 };

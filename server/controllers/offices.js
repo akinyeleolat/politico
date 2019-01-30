@@ -14,7 +14,7 @@ class OfficeController {
     return res.status(200).send({
       status: 200,
       data,
-      message: 'Offices Retrived',
+      message: 'Offices Retrieved',
     });
   }
 
@@ -26,9 +26,9 @@ class OfficeController {
   static getOffice(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
-        message: 'Enter the correct party parameter',
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct office parameter',
       });
       return;
     }
@@ -44,7 +44,7 @@ class OfficeController {
     res.status(200).send({
       status: 200,
       data: officeDetails,
-      message: 'Party\'s Details Retrieved',
+      message: 'Office\'s Details Retrieved',
     });
   }
 

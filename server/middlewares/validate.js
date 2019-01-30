@@ -91,7 +91,7 @@ export const checkLengthMinMax = (value, min, max) => {
    * @returns {boolean} true or false.
    */
 export const checkLengthMax = (value, max) => {
-  if (value.length = max)
+  if (value.length == max)
   { return true; }
 };
 

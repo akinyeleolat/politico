@@ -20,6 +20,18 @@ describe('Valid routes', () => {
       .expect(200)
       .end(done);
   });
+  it('invalid route should return status 404', (done) => {
+    request
+      .get('/api/v1/')
+      .expect(404)
+      .end(done);
+  });
+  it('invalid route should return status 404', (done) => {
+    request
+      .get('/*')
+      .expect(404)
+      .end(done);
+  });
   it('should return all order in JSON format', (done) => {
     request
       .get('/')
