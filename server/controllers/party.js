@@ -28,7 +28,7 @@ class PartyController {
     if (isNaN(id)) {
       res.status(404).send({
         status: 404,
-        message: 'Enter the correct party parameter',
+        error: 'Enter the correct party parameter',
       });
       return;
     }
@@ -82,7 +82,7 @@ class PartyController {
     if (isNaN(id)) {
       res.status(404).send({
         status: 404,
-        message: 'Enter the correct party parameter',
+        error: 'Enter the correct party parameter',
       });
       return;
     }

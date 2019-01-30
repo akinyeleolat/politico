@@ -17,7 +17,7 @@ import * as validate from './validate';
     partyName = partyName && partyName.toString().trim();
     partyDetail = partyDetail && partyDetail.toString().trim();
 
-    if (req.body.constructor === Object && Object.keys(req.body).length === 0) return next (validate.validationError(res,'Blank party details'));
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) return next(validate.validationError(res,'Blank party details'));
     if(validate.checkEmpty(partyName)) return next(validate.validationError(res,'Party Name is required'));
     if(validate.checkEmpty(partyDetail)) return next(validate.validationError(res,'Party Detail is required'));
   return next();
