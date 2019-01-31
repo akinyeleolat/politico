@@ -4,7 +4,6 @@ body{
     margin:0;
     background-color: #fff;
 }
-/* Global*/
 .container{
     width:80%;
     margin:auto;
@@ -26,14 +25,10 @@ body{
     width:200px;
     height:38px;
     padding-left:5px;
-    /* padding: 14px; */
     border: 1px solid #e8491d;
     border-radius: 4px;
     box-sizing: border-box;
-    /* margin-top: 6px; */
-    /* margin-bottom: 6px; */
     margin-right:6px;
-    /* background: lightyellow; */
     font-size: 15px;
     font-family: FontAwesome;
     
@@ -105,14 +100,12 @@ ul{
     margin-bottom: 10px;
 }
 .pageform{
-    /* margin-top: 50px; */
     margin: 0 auto;
     position: relative;
     margin-bottom:6px;
     border-radius: 4px;
     box-sizing: border-box;
     text-align: center;
-    /* opacity:0.8; */
     height: 100%;
     padding: 10px;
     }
@@ -121,12 +114,9 @@ ul{
     width:200px;
     height:40px;
     padding-left:5px;
-    /* padding: 14px; */
     border: 1px solid #e8491d;
     border-radius: 4px;
     box-sizing: border-box;
-    /* margin-top: 6px; */
-    /* margin-bottom: 6px; */
     margin-right:6px;
     background: lightyellow;
     font-size: 15px;
@@ -152,7 +142,7 @@ ul{
     color:#e8491d;
     text-decoration: underline;
     }
-/* Header*/
+
 header{
     background: #fff;
     color:#e8491d;
@@ -189,7 +179,7 @@ header .highlight,section .highlight, header .current a{
     color:#e8491d;
     font-weight: bold;
 }
-/* partylist*/
+
 #partyList{
     margin-top: 0;
 }
@@ -204,7 +194,6 @@ header .highlight,section .highlight, header .current a{
     padding:10px;
     margin-right: 10px;
     margin-left: 10px;
-    /* border-bottom: 2px solid #a12e0f; */
     border:1px solid #ccc;
   }
   
@@ -226,8 +215,7 @@ header .highlight,section .highlight, header .current a{
   
   #partyList .container{
     padding: 2px 16px;
-    /* border:1px solid #a12e0f;
-    background: #fff; */
+   
   }
   #partyList .card h3{
     text-align: center;
@@ -270,7 +258,7 @@ header .highlight,section .highlight, header .current a{
 #partyList input[type="text"]{
     background:#fff;
 }
-/* office List*/
+
 #officeList{
     margin-top: 0;
 }
@@ -299,10 +287,8 @@ header .highlight,section .highlight, header .current a{
     background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    /* margin-top:20px; */
     margin-bottom: 20px;
     float:left;
-    /* width:30%; */
     padding:10px;
     margin-right: 10px;
     margin-left: 20px;
@@ -360,7 +346,7 @@ header .highlight,section .highlight, header .current a{
     border: 1px solid #ccc;
 }
 
-/* #officeList  tr:nth-child(even){background-color: #f2f2f2} */
+
 #officeList tr:nth-child(odd){background: rgb(218, 189, 189);}
 
 
@@ -374,30 +360,27 @@ header .highlight,section .highlight, header .current a{
 }
 
 
-/* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
     left: 0;
     top: 0;
-    width: 50%; /* Full width */
-    height: 50%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 50%; 
+    height: 50%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
   }
   
-  /* Modal Content */
   .modal-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    /* border-radius: 10px 10px 0 0; */
-    /* width: 50%; */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -405,7 +388,7 @@ header .highlight,section .highlight, header .current a{
     animation-duration: 0.4s
   }
   
-  /* Add Animation */
+
   @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
@@ -416,7 +399,7 @@ header .highlight,section .highlight, header .current a{
     to {top:0; opacity:1}
   }
   
-  /* The Close Button */
+  
   .close {
     color: white;
     float: right;
@@ -437,14 +420,11 @@ header .highlight,section .highlight, header .current a{
     padding: 2px 16px;
     background-color: #a12e0f;
     color: white;
-    /* border-radius: 10px 10px 0 0; */
   }
   
   
   .modal-body {
-      /* padding: 2px 16px; */
-      /* border-left: 1px solid #a12e0f;
-      border-right: 1px solid #a12e0f; */
+      
     }
   
   .modal-footer {
@@ -453,7 +433,7 @@ header .highlight,section .highlight, header .current a{
     color: white;
   }
   
-  /* search bar*/
+
 .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
@@ -523,13 +503,11 @@ header .highlight,section .highlight, header .current a{
       border: 1px solid #ccc;  
     }
   }
-  /* side bar*/
   .sidebar {
     margin: 0;
     padding: 0;
     width: 200px;
     background-color: #a12e0f;
-    /* position: fixed; */
     height: 100%;
     overflow: auto;
   }
@@ -560,20 +538,15 @@ header .highlight,section .highlight, header .current a{
   }
   
   div.content {
-    /* margin-left: 200px; */
     padding: 1px 16px;
-    /* height: 1000px; */
   }
-  /* Add an active class to the active dropdown button */
   .active {
     background-color: green;
     color: white;
   }
-  /* Style the sidenav links and the dropdown button */
   .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    /* font-size: 15px; */
     color: #fff;
     display: block;
     border: 1px solid #ccc;
@@ -585,19 +558,19 @@ header .highlight,section .highlight, header .current a{
     padding:16px;
   }
   
-  /* On mouse-over */
+  
   .dropdown-btn:hover {
     color: #f1f1f1;
   }
-  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+  
   .dropdown-container {
     display: none;
     background-color: #a12e0f;
     font-size: 0.8em;
-    /* padding-left: 8px; */
+
   }
   
-  /* Optional: Style the caret down icon */
+
   .fa-caret-down {
     float: right;
     padding-right: 8px;
@@ -619,9 +592,8 @@ header .highlight,section .highlight, header .current a{
     }
   }
   
-/*landing div*/
+
 #wrap {
-    /* background: #e7e7e7; */
     background: url(../img/wallpaper2.jpg) repeat-y 0 0;
     display: flex;
     justify-content: center;
@@ -635,7 +607,6 @@ header .highlight,section .highlight, header .current a{
 }
 #left {
     background: #e8491d;
-    /* background: url(../img/wallpaper3.jpg) no-repeat 0 0; */
     color: #fff;
     width:25%;
     padding-top: 10%;
@@ -648,27 +619,20 @@ header .highlight,section .highlight, header .current a{
 }
 #pagewrap {
     background: #e7e7e7;
-    /* background: url(../img/wallpaper.jpg) repeat-y 0 0; */
     display: flex;
-    /* justify-content: center; */
-    /* padding: 10px;  */
     width: 100%;
 }
 
 #pageleft {
     background: #a12e0f;
-    /* background: url(../img/wallpaper3.jpg) no-repeat 0 0; */
     color: #fff;
     width:200px;
 }
 #pageright {
-    /* border-radius: 0 10px 10px 0; */
-    /* background: #fff; */
-    /* border:1px solid #e8491d; */
     color:#000;
     width:90%;
 }
-/*Showcase*/
+
 #showcase{
     min-height: 100vh;
     background: url(../img/vote5.jpg) no-repeat 0 0;
@@ -716,7 +680,7 @@ header .highlight,section .highlight, header .current a{
     font-size: 16px;
     font-family: FontAwesome;
 }
-/* order*/
+
 #order{
     margin-top:0;
     border-bottom: 1px solid #e8491d;
@@ -768,7 +732,7 @@ header .highlight,section .highlight, header .current a{
     float:right;
     padding: 5px;
 }
-/* cart*/
+
 #cart{
     margin-top: 50px;
     margin: auto;
@@ -818,7 +782,7 @@ header .highlight,section .highlight, header .current a{
     font-size: 15px;
     color:#e8491d;
   }
-/* newsletter*/
+
 #newsletter{
     padding:15px;
     color:#fff;
@@ -844,16 +808,15 @@ header .highlight,section .highlight, header .current a{
     box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 6px;
-    /* background: lightyellow; */
     font-size: 15px;
 }
 #newsletter button{
     border: 1px solid #fff;
 }
-/* boxes*/
+
 #boxes{
     margin-top:20px;
-    /* background: url(../img/wallpaper2.jpg) no-repeat -400px 0; */
+    
 }
 #boxes h1{
     text-align: center;
@@ -881,23 +844,23 @@ header .highlight,section .highlight, header .current a{
     text-align: center;
     color:#e8491d;
 }
-/* Main Col*/
+
 #main{
     background: url(../img/foods-wallpaper.jpg) no-repeat 0 -500px;
     min-height:100%;
     margin-top: 10%;
 }
 #main2{
-    /* background: url(../img/bghome2.jpg) repeat 0 -500px; */
+
     background:#e8491d;
     min-height:100%;
     margin-top: 10%;
    margin-bottom:10%;
 }
-/* userOrder*/
+
 #userOrder{
     margin-top:0;
-    /* border-bottom: 1px solid #e8491d; */
+
 }
 #userOrder h1{
     text-align: center;
@@ -906,11 +869,11 @@ header .highlight,section .highlight, header .current a{
     background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    /* margin-top:20px; */
+
     margin-bottom: 20px;
     float:left;
     width:30%;
-    /* padding:10px; */
+
     margin-right: 10px;
     margin-left: 20px;
 }
@@ -1025,7 +988,7 @@ article a{
     text-transform: uppercase;
     font-size:12px;
 }
-/* Aside*/
+
 aside#sidebar{
     width:30%;
     margin-top: 10px;
@@ -1035,7 +998,7 @@ aside#sidebar .quote input,aside#sidebar .quote textarea{
     width:90%;
     padding:5px;
 }
-/* page_item*/
+
 ul#page_item li{
     list-style: none;
     background: #e6e6e6;
@@ -1043,7 +1006,7 @@ ul#page_item li{
     border:1px solid #ccc;
     padding:20px;
 }
-/* footer*/
+
 footer{
     padding:20px;
     margin-top:0px;
@@ -1057,15 +1020,13 @@ footer{
     bottom: 0;
 }
 
-/* W3schools tutorial*/
-/* Tab*/
-/* Style the tab */
+
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #fff;
 }
-/* Style the buttons inside the tab */
+
 .tab button {
     background-color: inherit;
     color:#e8491d;
@@ -1077,58 +1038,54 @@ footer{
     transition: 0.3s;
     font-size: 17px;
 }
-/* Change background color of buttons on hover */
+
 .tab button:hover {
     background-color:#e8491d;
     color: #fff;
 }
-/* Create an active/current tablink class */
+
 .tab button.active {
     background-color: #fff;
     color: #e8491d;
     border-bottom: 3px solid #e8491d;
 }
-/* Style the tab content */
+
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    /* border: 1px solid #ccc; */
     border-top: none;
     width: auto;
-    /* background-color:#f1f1f1; */
-}
-/* tabcontent content*/
-/* userOrder*/
 
-/* Modal Window */
-/* The Modal (background) */
+}
+
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
 }
 .modal button{
     width:100px;
 }
 
-/* Modal Content */
+
 
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    /* padding: 20px; */
+
     border: 1px solid #888;
     width: 30%;
 }
-/* The Close Button */
+
 .close {
     color: #aaaaaa;
     float: right;
@@ -1142,7 +1099,7 @@ footer{
     text-decoration: none;
     cursor: pointer;
 }
-/* Side Panel*/
+
 .sidepanel  {
     width: 250px;
     position: fixed;
@@ -1182,7 +1139,7 @@ footer{
     background-color: inherit;
     color: white;
     padding: 10px 15px;
-    /* width:100%; */
+
     border: 0px solid #35424a;
 }
 
@@ -1190,7 +1147,7 @@ footer{
     background-color:#a12e0f;
 }
 
-/* Media Queries*/
+
 @media(max-width:768px){
     header #branding,
     header nav,
@@ -1253,7 +1210,6 @@ footer{
      #partyList .card th, .card td {
         text-align: left;
         font-size:12px;
-        /* padding: 5px; */
          }
     #partyList .card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
