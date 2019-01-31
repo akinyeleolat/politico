@@ -1,5 +1,6 @@
 /** Method for getting all parties. */
 
+
 // eslint-disable-next-line import/no-mutable-exports
 let party = [{
   id: 1,
@@ -19,3 +20,4 @@ function partyData(value) {
 }
 
 export { party, partyData };
+
