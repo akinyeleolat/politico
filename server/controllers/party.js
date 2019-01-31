@@ -135,7 +135,7 @@ static deleteParty(req,res){
       return;
     }
     const filteredParty = party.filter(parties => parties !== partyDetails);
-    // const filteredParty = party.slice(0, partyId-1).concat(party.slice(partyId, party.length))
+
     
     res.status(200).send({
       status: 200,
