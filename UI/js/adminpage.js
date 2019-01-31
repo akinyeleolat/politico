@@ -1,3 +1,4 @@
+// credit w3schools tutorial as a guide
 
  var dropdown = document.getElementsByClassName("dropdown-btn");
  var i;

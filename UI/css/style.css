@@ -13,6 +13,7 @@ body{
 .dashboardcontainer{
     margin-left:10px;
     margin-right:10px;
+    margin-bottom: 10px;
     overflow:hidden;
     min-height:100%;
     background: #fff;
@@ -20,7 +21,7 @@ body{
     padding:5px;
     margin-top: 20px;
 }
-.dashboardcontainer input[type="text"]{
+.dashboardcontainer input[type="text"],select{
     width:200px;
     height:38px;
     padding-left:5px;
@@ -141,6 +142,7 @@ ul{
     color:#e8491d;
     text-decoration: underline;
     }
+
 header{
     background: #fff;
     color:#e8491d;
@@ -177,6 +179,7 @@ header .highlight,section .highlight, header .current a{
     color:#e8491d;
     font-weight: bold;
 }
+
 #partyList{
     margin-top: 0;
 }
@@ -212,6 +215,7 @@ header .highlight,section .highlight, header .current a{
   
   #partyList .container{
     padding: 2px 16px;
+   
   }
   #partyList .card h3{
     text-align: center;
@@ -254,6 +258,7 @@ header .highlight,section .highlight, header .current a{
 #partyList input[type="text"]{
     background:#fff;
 }
+
 #officeList{
     margin-top: 0;
 }
@@ -271,11 +276,10 @@ header .highlight,section .highlight, header .current a{
     border-bottom: #ccc 1px solid;
 }
 #officeList h3{
-    width: 100%;
     background: rgb(218, 189, 189);
     color: #a12e0f;
     padding-left: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
     border-bottom: #a12e0f 1px solid;
     text-align:  center;
 }
@@ -285,9 +289,11 @@ header .highlight,section .highlight, header .current a{
     transition: 0.3s;
     margin-bottom: 20px;
     float:left;
-    width:30%;
+    padding:10px;
     margin-right: 10px;
     margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
 }
 
 #officeList .card:hover {
@@ -326,6 +332,7 @@ header .highlight,section .highlight, header .current a{
     float:right;
     padding: 5px;
 }
+
 #officeList  table {
     border-collapse: collapse;
     width: 100%;
@@ -368,7 +375,6 @@ header .highlight,section .highlight, header .current a{
     background-color: rgba(0,0,0,0.4); 
   }
   
-
   .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -393,7 +399,7 @@ header .highlight,section .highlight, header .current a{
     to {top:0; opacity:1}
   }
   
-
+  
   .close {
     color: white;
     float: right;
@@ -418,7 +424,7 @@ header .highlight,section .highlight, header .current a{
   
   
   .modal-body {
-     
+      
     }
   
   .modal-footer {
@@ -497,7 +503,6 @@ header .highlight,section .highlight, header .current a{
       border: 1px solid #ccc;  
     }
   }
-
   .sidebar {
     margin: 0;
     padding: 0;
@@ -535,12 +540,10 @@ header .highlight,section .highlight, header .current a{
   div.content {
     padding: 1px 16px;
   }
-
   .active {
     background-color: green;
     color: white;
   }
- 
   .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -555,16 +558,18 @@ header .highlight,section .highlight, header .current a{
     padding:16px;
   }
   
-
+  
   .dropdown-btn:hover {
     color: #f1f1f1;
   }
- 
+  
   .dropdown-container {
     display: none;
     background-color: #a12e0f;
     font-size: 0.8em;
+
   }
+  
 
   .fa-caret-down {
     float: right;
@@ -587,6 +592,7 @@ header .highlight,section .highlight, header .current a{
     }
   }
   
+
 #wrap {
     background: url(../img/wallpaper2.jpg) repeat-y 0 0;
     display: flex;
@@ -807,8 +813,10 @@ header .highlight,section .highlight, header .current a{
 #newsletter button{
     border: 1px solid #fff;
 }
+
 #boxes{
     margin-top:20px;
+    
 }
 #boxes h1{
     text-align: center;
@@ -843,6 +851,7 @@ header .highlight,section .highlight, header .current a{
     margin-top: 10%;
 }
 #main2{
+
     background:#e8491d;
     min-height:100%;
     margin-top: 10%;
@@ -851,6 +860,7 @@ header .highlight,section .highlight, header .current a{
 
 #userOrder{
     margin-top:0;
+
 }
 #userOrder h1{
     text-align: center;
@@ -859,9 +869,11 @@ header .highlight,section .highlight, header .current a{
     background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+
     margin-bottom: 20px;
     float:left;
     width:30%;
+
     margin-right: 10px;
     margin-left: 20px;
 }
@@ -976,6 +988,7 @@ article a{
     text-transform: uppercase;
     font-size:12px;
 }
+
 aside#sidebar{
     width:30%;
     margin-top: 10px;
@@ -1001,9 +1014,12 @@ footer{
     color:#fff;
     background-color:#a12e0f;
     height: 50px;
+    width: 100%;
+    position: relative;
     left: 0;
     bottom: 0;
 }
+
 
 .tab {
     overflow: hidden;
@@ -1039,7 +1055,9 @@ footer{
     padding: 6px 12px;
     border-top: none;
     width: auto;
+
 }
+
 
 .modal {
     display: none; 
@@ -1121,6 +1139,7 @@ footer{
     background-color: inherit;
     color: white;
     padding: 10px 15px;
+
     border: 0px solid #35424a;
 }
 
