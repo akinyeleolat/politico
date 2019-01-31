@@ -1,6 +1,6 @@
 /** Method for getting all parties. */
-
-  let party = [{
+export const partyData = () => {
+  const party = [{
     id: 1,
     partyName: 'SDP',
     partyDetail: 'Social Democratic Party',
@@ -12,10 +12,6 @@
     partyDetail: 'People Democratic Party',
     logoUrl: 'http://www.logo.com/PDP',
   }];
-
-  function partyData(value) {
-    party = value;
-  }
-  
-  export { party, partyData };
-
+  return party;
+};
+export default partyData();

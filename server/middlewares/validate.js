@@ -26,6 +26,7 @@ export const checkEmpty = (value) => {
    * @returns {boolean} true or false.
    */
   export const checkString = (value) => {
+    // .toLowerCase()
     if (String(value).match(/[a-z]/g)) {
       return true;
     }
