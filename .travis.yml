@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  v8.11.4
+env:
+  global:
+    - CC_TEST_REPORTER_ID=4178179e624c14b5ec26079e660911a3fab84c25dc75ae12494df230b41804d7
+cache:
+  directories:
+   - "node_modules"
+addons:
+    code_climate:
+        repo_token: 4178179e624c14b5ec26079e660911a3fab84c25dc75ae12494df230b41804d7
+script: 
+  - npm test
+after_success:
+  - npm run coverage
+before_script:
+  - psql -c "create database travis;" -U postgres
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
