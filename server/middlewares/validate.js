@@ -25,13 +25,16 @@ export const checkNumber = (value) => {
    * @param {string} value any
    * @returns {boolean} true or false.
    */
-export const checkString = (value) => {
-  if (String(value).match(/[a-z]/g)) {
-    return true;
-  }
-};
 
+  export const checkString = (value) => {
+    if (String(value).match(/[a-z]/g)) {
+      return true;
+    }
+  };
+  
+  
 /**
+
    * This function check if the value is a valid email.
    * @param {number} value any
    * @returns {boolean} true or false.
