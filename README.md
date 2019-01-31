@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/akinyeleolat/politico.svg?branch=develop)](https://travis-ci.com/akinyeleolat/politico)
+[![Coverage Status](https://coveralls.io/repos/github/akinyeleolat/politico/badge.svg?branch=develop)](https://coveralls.io/github/akinyeleolat/politico?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 # Politico
 
 # Description
