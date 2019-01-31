@@ -1,6 +1,6 @@
 const loginUser = (event) => {
     event.preventDefault()
-    //  get form input
+
     const email = document.getElementById('email').value.trim()
     const password = document.getElementById('password').value.trim()
     if (!email || !password) {
