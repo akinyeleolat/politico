@@ -53,7 +53,7 @@ class OfficeController {
  * @memberof OfficeController
  * @static
  */
- static createOffice(req, res) {
+  static createOffice(req, res) {
     let { officeName, officeType } = req.body;
     officeName = officeName ? officeName.toString().replace(/\s+/g, ' ') : officeName;
     officeType = officeType ? officeType.toString().toLowerCase().replace(/\s+/g, '') : officeType;

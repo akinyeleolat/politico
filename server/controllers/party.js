@@ -3,7 +3,6 @@ import { party, partyData } from '../models/party';
 /** party controller class */
 
 class PartyController {
-
   /**
  * @function getAllParty
  * @memberof PartyController
@@ -54,14 +53,19 @@ class PartyController {
  * @static
  */
   static createParty(req, res) {
-    let { partyName, partyDetail, logoUrl } = req.body;
+    let {
+      partyName, partyDetail, hqAddress, logoUrl,
+    } = req.body;
+
     partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
     partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
+    hqAddress = hqAddress ? hqAddress.toString().replace(/\s+/g, ' ') : hqAddress;
     logoUrl = logoUrl ? logoUrl.toString().replace(/\s+/g, '') : logoUrl;
     const newParty = {
       id: party.length + 1,
       partyName,
       partyDetail,
+      hqAddress,
       logoUrl,
     };
     party.push(newParty);
@@ -111,7 +115,6 @@ class PartyController {
       data: newPartyDetail,
       message: `party's name updated to ${partyName}`,
     });
-
   }
 
   /**

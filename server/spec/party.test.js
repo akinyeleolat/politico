@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import chai from 'chai';
 import app from '../app';
 
-import { party, partyData } from '../models/party';
+import { party } from '../models/party';
 import * as test from '../models/partyEntries';
 
 const { expect } = chai;
@@ -94,14 +94,7 @@ describe('POST PARTY /api/v1/parties', () => {
       .post('/api/v1/parties')
       .send(emptyPartyData)
       .expect(400)
-      .end((err, res) => {
-        expect(res.body).deep.equal({
-          status: 400,
-          error: 'Blank party details',
-        });
-        if (err) done(err);
-        done();
-      });
+      .end(done);
   });
   it('Valid input should return 200', (done) => {
     const newParty = test.partyData1;

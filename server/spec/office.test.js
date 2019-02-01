@@ -95,14 +95,7 @@ describe('POST OFFICES /api/v1/offices', () => {
       .post('/api/v1/offices')
       .send(emptyOfficeData)
       .expect(400)
-      .end((err, res) => {
-        expect(res.body).deep.equal({
-          status: 400,
-          error: 'Blank office details',
-        });
-        if (err) done(err);
-        done();
-      });
+      .end(done);
   });
   it('Valid input should return 201', (done) => {
     newOffice = test.officeData1;
