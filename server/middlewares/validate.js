@@ -31,6 +31,7 @@ export const checkString = (value) => {
 };
 
 /**
+
    * This function check if the value is a valid email.
    * @param {number} value any
    * @returns {boolean} true or false.
