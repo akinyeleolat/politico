@@ -47,6 +47,7 @@ class UserController {
                   }, process.env.SECRET_KEY, { expiresIn: '1h' },
                 );
                 const userProfile = {
+                  id: user.id,
                   firstname,
                   lastname,
                   othername,
