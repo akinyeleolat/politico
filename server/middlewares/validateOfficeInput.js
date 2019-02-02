@@ -14,15 +14,21 @@ import * as validate from './validate';
    */
 const validateOfficeInput = (req, res, next) => {
   const typeOffice = ['federal', 'state', 'local government'];
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) next(validate.validationError(req, 'Office name and office type required'));
+  if (req.error) return next(validate.getErrorMsg(req, res));
   let { officeName, officeType } = req.body;
   officeName = officeName && officeName.toString().trim();
   officeType = officeType && officeType.toString().trim();
-  if (req.body.constructor === Object && Object.keys(req.body).length === 0) return next(validate.validationError(res, 'Blank office details'));
-  if (validate.checkEmpty(officeName)) return next(validate.validationError(res, 'officeName is required'));
-  if (validate.checkEmpty(officeType)) return next(validate.validationError(res, 'Office type is required'));
-  if (!validate.checkString(officeName)) return next(validate.validationError(res, 'officeName  must be an alphabet'));
-  if (!validate.checkString(officeType)) return next(validate.validationError(res, 'Office type must be an alphabet'));
-  if (typeOffice.indexOf(officeType.toLowerCase()) < 0) return next(validate.validationError(res, 'Enter valid office type'));
+  
+  if (req.body.officeName === undefined) next(validate.validationError(req, 'Office Name required'));
+  if (req.body.officeType === undefined) next(validate.validationError(req, 'Office type required'));
+  if (req.error) return next(validate.getErrorMsg(req, res));
+  if (validate.checkEmpty(officeName)) next(validate.validationError(req, 'Office Name is required'));
+  if (validate.checkEmpty(officeType)) next(validate.validationError(req, 'Office type is required'));
+  if (!validate.checkString(officeName)) next(validate.validationError(req, 'Office Name  must be an alphabet'));
+  if (!validate.checkString(officeType)) next(validate.validationError(req, 'Office type must be an alphabet'));
+  if (typeOffice.indexOf(officeType.toLowerCase()) < 0) next(validate.validationError(req, 'Enter valid office type'));
+  if (req.error) return next(validate.getErrorMsg(req, res));
   return next();
 };
 export default validateOfficeInput;

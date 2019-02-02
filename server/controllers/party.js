@@ -3,7 +3,6 @@ import { party, partyData } from '../models/party';
 /** party controller class */
 
 class PartyController {
-
   /**
  * @function getAllParty
  * @memberof PartyController
@@ -26,9 +25,9 @@ class PartyController {
   static getParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
-        message: 'Enter the correct party parameter',
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
       });
       return;
     }
@@ -54,14 +53,19 @@ class PartyController {
  * @static
  */
   static createParty(req, res) {
-    let { partyName, partyDetail, logoUrl } = req.body;
+    let {
+      partyName, partyDetail, hqAddress, logoUrl,
+    } = req.body;
+
     partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
     partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
+    hqAddress = hqAddress ? hqAddress.toString().replace(/\s+/g, ' ') : hqAddress;
     logoUrl = logoUrl ? logoUrl.toString().replace(/\s+/g, '') : logoUrl;
     const newParty = {
       id: party.length + 1,
       partyName,
       partyDetail,
+      hqAddress,
       logoUrl,
     };
     party.push(newParty);
@@ -80,9 +84,9 @@ class PartyController {
   static updateParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
-        message: 'Enter the correct party parameter',
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
       });
       return;
     }
@@ -111,7 +115,6 @@ class PartyController {
       data: newPartyDetail,
       message: `party's name updated to ${partyName}`,
     });
-
   }
 
   /**
@@ -122,9 +125,9 @@ class PartyController {
   static deleteParty(req, res) {
     const { id } = req.params;
     if (isNaN(id)) {
-      res.status(404).send({
-        status: 404,
-        message: 'Enter the correct party parameter',
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
       });
       return;
     }
@@ -133,7 +136,7 @@ class PartyController {
     if (!partyDetails) {
       res.status(404).send({
         status: 404,
-        message: 'The party with given id was not found',
+        error: 'The party with given id was not found',
       });
       return;
     }

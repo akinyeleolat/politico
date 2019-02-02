@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/akinyeleolat/politico.svg?branch=develop)](https://travis-ci.com/akinyeleolat/politico)
+[![Coverage Status](https://coveralls.io/repos/github/akinyeleolat/politico/badge.svg?branch=develop)](https://coveralls.io/github/akinyeleolat/politico?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 # Politico
 
 # Description
@@ -34,7 +38,7 @@ Politico app project is broken down into small task with pivotal tracker board. 
 NA
 
 # UI Templates
-The application is hosted online on gh-pages with [Mobile Buka] (https://akinyeleolat.github.io/politico/UI/)
+The application is hosted online on gh-pages with [ Politico ] (https://akinyeleolat.github.io/politico/UI/)
 
 # API Documentation
 to be added later
@@ -69,42 +73,42 @@ Currently,
   </tr>
   <tr>
     <td>POST</td>
-    <td>api/v1/party/</td>
+    <td>api/v1/parties/</td>
     <td>Create A Political Party</td>
   </tr>
   <tr>
     <td>POST</td>
-    <td>api/v1/office/</td>
+    <td>api/v1/offices/</td>
     <td>Create A Political Office</td>
   </tr>
    <tr>
     <td>PATCH</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Edit a specific political party</td>
   </tr>
   <tr>
     <td>DELETE</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Delete a specific political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/party/</td>
+    <td>api/v1/parties/</td>
     <td>Get all political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/party/partyId</td>
+    <td>api/v1/parties/partyId</td>
     <td>Get specific political party</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/office</td>
+    <td>api/v1/offices</td>
     <td>Get all political office</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/office/officeId</td>
+    <td>api/v1/offices/officeId</td>
     <td>Get specific political office</td>
   </tr>
   </table>

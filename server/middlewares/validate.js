@@ -4,7 +4,6 @@
  * @returns {boolean} true or false.
  */
 export const checkEmpty = (value) => {
-
   if (value.trim() === '' || (!value)) {
     return true;
   }
@@ -25,14 +24,12 @@ export const checkNumber = (value) => {
    * @param {string} value any
    * @returns {boolean} true or false.
    */
+export const checkString = (value) => {
+  if (/^[A-Za-z ]+$/.test(value)) {
+    return true;
+  }
+};
 
-  export const checkString = (value) => {
-    if (String(value).match(/[a-z]/g)) {
-      return true;
-    }
-  };
-  
-  
 /**
 
    * This function check if the value is a valid email.
@@ -84,8 +81,7 @@ export const checkPassword = (value) => {
    * @returns {boolean} true or false.
    */
 export const checkLengthMinMax = (value, min, max) => {
-  if ((value.length >= min) && (value.length <= max))
-  { return true; }
+  if ((value.length >= min) && (value.length <= max)) { return true; }
 };
 /**
    * This function check if the value is a valid length
@@ -93,8 +89,7 @@ export const checkLengthMinMax = (value, min, max) => {
    * @returns {boolean} true or false.
    */
 export const checkLengthMax = (value, max) => {
-  if (value.length = max)
-  { return true; }
+  if (value.length === max) { return true; }
 };
 
 /**
@@ -105,11 +100,19 @@ export const checkLengthMax = (value, max) => {
  *
  * @returns {Object}
  */
-export const validationError = (res, message) => {
-  const err = Error(message);
-  err.statusCode = 400;
-  return res.status(400).send({
+const errorMsg = [];
+export const validationError = (req, message) => {
+  errorMsg.push(message);
+  req.error = 'redflag';
+  return errorMsg;
+};
+
+export const getErrorMsg = (req, res) => {
+  res.status(400).json({
     status: 400,
-    error: message,
+    error: errorMsg,
   });
+  errorMsg.length = 0;
+  req.error = null;
+  return errorMsg;
 };
