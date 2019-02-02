@@ -91,6 +91,14 @@ export const checkLengthMinMax = (value, min, max) => {
 export const checkLengthMax = (value, max) => {
   if (value.length === max) { return true; }
 };
+/**
+   * This function check if the value has a valid length less than paramter.
+   * @param {number} value any
+   * @returns {boolean} true or false.
+   */
+export const checkLengthMin = (value, min) => {
+  if (value.length >= min) { return true; }
+};
 
 /**
  * This is a validation for user  data

@@ -32,11 +32,8 @@ CREATE TABLE IF NOT EXISTS users (
    password  VARCHAR(255) NOT NULL,
    passportUrl  VARCHAR(225) NOT NULL,
    isAdmin BOOLEAN NOT NULL,
-   party INT NULL,
    created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   --Relationship-- 
-  FOREIGN KEY( party ) REFERENCES party( id ) 
+   updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS candidates (
