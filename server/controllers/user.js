@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt-nodejs';
 import db from '../db';
 
 
@@ -76,6 +77,70 @@ class UserController {
           err: err.message,
         });
       }));
+  }
+  /**
+* @function login
+* @memberof UserController
+*
+* @param {Object} req - this is a request object that contains whatever is requested for
+* @param {Object} res - this is a response object to be sent after attending to a request
+*
+* @static
+*/
+
+  static login(req, res) {
+    let { email } = req.body;
+    const { password } = req.body;
+    email = email && email.toString().trim();
+
+    return db.task('signin', data => data.users.findByEmail(email)
+      .then((user) => {
+        if (!user) {
+          return res.status(401).json({
+            status: 401,
+            error: 'You have entered an invalid email or password',
+          });
+        }
+        const allowEntry = bcrypt.compareSync(password, user.password);
+        if (!allowEntry) {
+          return res.status(401).json({
+            status: 401,
+            error: 'You have entered an invalid email or password',
+          });
+        }
+        const token = jwt.sign(
+          {
+            id: user.id, firstname: user.firstname, lastname: user.lastname, othername: user.othername, email: user.email, phonenumber: user.phonenumber, user_image: user.passporturl,
+          }, process.env.SECRET_KEY, { expiresIn: '1h' },
+        );
+        const userProfile = {
+          id: user.id,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          othername: user.othername,
+          email: user.email,
+          phonenumber: user.phonenumber,
+          passport: user.passporturl,
+        };
+        const data = [
+          {
+            token,
+            user: userProfile,
+          },
+        ];
+        return res.status(201).json({
+          status: 200,
+          data,
+          message: 'Login successfully',
+        });
+      }))
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to login, try again!',
+          err: err.message,
+        });
+      });
   }
 }
 export default UserController;

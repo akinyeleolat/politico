@@ -1,8 +1,8 @@
 import path from 'path';
 import Promise from 'bluebird';
 import pgp, { QueryFile } from 'pg-promise';
-import User from '../models/user';
 import setup from '../config/config';
+
 
 /** @const sql - generating a full path */
 
@@ -15,13 +15,12 @@ const sql = (file) => {
 
 const initOptions = {
   promiseLib: Promise,
-  extend(obj) {
-    obj.users = new User(obj);
-  },
 };
 
 const env = process.env.NODE_ENV || 'development';
+
 const config = setup[env];
+console.log(config);
 
 let $db;
 
@@ -34,9 +33,9 @@ if (config.use_env_variable) {
 const db = $db;
 
 db
-  .query(sql('./politico.sql'))
+  .query(sql('./clear.sql'))
   .then(() => {
-    console.log('Database successfully initialized');
+    console.log('Database table dropped');
   })
   .catch((err) => {
     console.log(err);
