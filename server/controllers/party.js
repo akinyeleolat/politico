@@ -89,5 +89,46 @@ class PartyController {
         });
       }));
   }
+
+  /**
+ * @function getParty
+ * @memberof PartyController
+ * @static
+ */
+  static getParty(req, res) {
+    let { id } = req.params;
+    id = Number(id);
+    if (isNaN(id)) {
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
+      });
+      return;
+    }
+    db.task('getParty', db => db.party.findById(id)
+      .then((party) => {
+        if (!party) {
+          res.status(404).send({
+            status: 404,
+            error: 'The party with given id was not found',
+          });
+          return;
+        }
+        const data = party;
+        res.status(200).send({
+          status: 200,
+          data,
+          message: 'Party\'s Details Retrieved',
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch party',
+          err: err.message,
+        });
+      }))
+  }
+
 }
 export default PartyController;

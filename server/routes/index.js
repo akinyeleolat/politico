@@ -9,6 +9,7 @@ router.post('/auth/signup', middlewares.validateSignUp, UserController.signup);
 router.post('/auth/login', middlewares.validateUserLogin, UserController.login);
 router.post('/parties/', middlewares.validateCreateParty, PartyController.createParty);
 router.get('/parties', PartyController.getAllParty);
+router.get('/parties/:id', PartyController.getParty);
 router.get('/offices', OfficeController.getAllOffice);
 router.get('/offices/:id', OfficeController.getOffice);
 router.post('/offices/', middlewares.validateOfficeInput, OfficeController.createOffice);
