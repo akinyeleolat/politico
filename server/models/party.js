@@ -51,7 +51,7 @@ export default class Party {
   */
 
   remove(id) {
-    const sql = 'DELETE FROM party WHERE id = $1';
+    const sql = 'DELETE FROM party WHERE id = $1 RETURNING *';
     return this.db.one(sql, id);
   }
   /** Method for getting all party in the database. */

@@ -181,5 +181,52 @@ class PartyController {
         });
       }))
   }
+
+  /**
+   * @function deleteParty
+   * @memberof PartyController
+   * @static
+   */
+  static deleteParty(req, res) {
+    const { id } = req.params;
+    if (isNaN(id)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Enter the correct party parameter',
+      });
+    }
+    const partyId = Number(id);
+    return db.task('getParty', db => db.party.findById(id)
+      .then((partyData) => {
+        if (!partyData) {
+          res.status(404).send({
+            status: 404,
+            error: 'The party with given id was not found',
+          });
+          return;
+        }
+        db.task('deleteParty', db => db.party.remove(partyId)
+          .then((party) => {
+            return res.status(200).send({
+              status: 200,
+              message: `${party.partyname} deleted`,
+            });
+          })
+          .catch((err) => {
+            return res.status(500).json({
+              status: 500,
+              error: 'unable to delete party',
+              err: err.message,
+            });
+          }));
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch party',
+          err: err.message,
+        });
+      }))
+  }
 }
 export default PartyController;
