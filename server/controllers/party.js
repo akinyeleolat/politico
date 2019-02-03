@@ -66,5 +66,28 @@ class PartyController {
       }))
   }
 
+  /**
+ * @function getAllParty
+ * @memberof PartyController
+ * @static
+ */
+  static getAllParty(req, res) {
+    return db.task('AllParty', db => db.party.allData()
+      .then((party) => {
+        const data = party;
+        return res.status(200).send({
+          status: 200,
+          data,
+          message: 'Retrieved all Parties',
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch party',
+          err: err.message,
+        });
+      }));
+  }
 }
 export default PartyController;

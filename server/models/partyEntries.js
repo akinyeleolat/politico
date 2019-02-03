@@ -1,6 +1,7 @@
 const partyName = 'SDP';
 const partyDetail = 'Social Democratic Party';
 const logoUrl = 'http://www.logo.com/SDP';
+const hqAddress = 'Ikeja, Lagos';
 
 /**
 * This is a valid party data
@@ -9,6 +10,7 @@ const logoUrl = 'http://www.logo.com/SDP';
 export const partyData1 = {
   partyName,
   partyDetail,
+  hqAddress,
   logoUrl,
 };
 /**
@@ -91,5 +93,25 @@ export const partyData9 = {
 export const partyData10 = {
   partyName,
   partyDetail: 123,
+  logoUrl,
+};
+/**
+* This is empty hqAddress
+* @exports partyData11
+* */
+export const partyData11 = {
+  partyName,
+  partyDetail,
+  hqAddress: '',
+  logoUrl,
+};
+/**
+* This is hqAddress with space
+* @exports partyData12
+* */
+export const partyData12 = {
+  partyName,
+  partyDetail,
+  hqAddress: '',
   logoUrl,
 };
