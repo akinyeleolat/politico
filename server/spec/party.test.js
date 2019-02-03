@@ -190,3 +190,96 @@ describe('GET SELECTED PARTIES /api/v1/parties/:id', () => {
       .end(done);
   });
 });
+
+describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
+  let partyId = '';
+  let newData = '';
+  it('PARTY WITH ID THAT ISNAN should return  status 400', (done) => {
+    partyId = 's';
+    newData = test.partyData1;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 400,
+          error: 'Enter the correct party parameter',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('PARTY WITH VALID ID should return  status 200', (done) => {
+    partyId = 1;
+    newData = test.partyData1;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(200)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH NO VALID ID should return  status 400', (done) => {
+    partyId = 5;
+    newData = test.partyData1;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(404)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH VALID ID BUT EMPTY DETAIL should return  status 400', (done) => {
+    partyId = 1;
+    newData = {};
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH VALID ID BUT EMPTY PARTY NAME should return  status 400', (done) => {
+    partyId = 1;
+    newData = test.partyData2;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH VALID ID BUT PARTY NAME with spaces should return  status 400', (done) => {
+    partyId = 1;
+    newData = test.partyData3;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH VALID ID BUT EMPTY PARTY DETAIL should return  status 400', (done) => {
+    partyId = 1;
+    newData = test.partyData4;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end(done);
+  });
+  it('PARTY WITH VALID ID BUT PARTY DETAIL with spaces should return  status 400', (done) => {
+    partyId = 1;
+    newData = test.partyData5;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect(400)
+      .send(newData)
+      .end(done);
+  });
+  it('should return a JSON', (done) => {
+    partyId = 1;
+    newData = test.partyData1;
+    request
+      .patch(`/api/v1/parties/${partyId}/name`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .send(newData)
+      .end(done);
+  });
+});
