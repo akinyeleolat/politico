@@ -50,5 +50,29 @@ class OfficeController {
         });
       }));
   }
+  
+  /**
+ * @function getAllOffice
+ * @memberof OfficeController
+ * @static
+ */
+  static getAllOffice(req, res) {
+    return db.task('AllOffice', db => db.office.allData()
+      .then((office) => {
+        const data = office;
+        return res.status(200).send({
+          status: 200,
+          data,
+          message: 'Retrieved all Parties',
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch office',
+          err: err.message,
+        });
+      }));
+  }
 }
 export default OfficeController;
