@@ -14,5 +14,6 @@ router.patch('/parties/:id/name', middlewares.validateUpdateParty, PartyControll
 router.delete('/parties/:id', PartyController.deleteParty);
 router.post('/offices/', middlewares.validateOfficeInput, OfficeController.createOffice);
 router.get('/offices', OfficeController.getAllOffice);
+router.get('/offices/:id', OfficeController.getOffice);
 
 export default router;

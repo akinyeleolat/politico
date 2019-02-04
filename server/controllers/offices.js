@@ -74,5 +74,45 @@ class OfficeController {
         });
       }));
   }
+
+  /**
+ * @function getOffice
+ * @memberof OfficeController
+ * @static
+ */
+  static getOffice(req, res) {
+    let { id } = req.params;
+    id = Number(id);
+    if (isNaN(id)) {
+      res.status(400).send({
+        status: 400,
+        error: 'Enter the correct office parameter',
+      });
+      return;
+    }
+    db.task('getOffice', db => db.office.findById(id)
+      .then((office) => {
+        if (!office) {
+          res.status(404).send({
+            status: 404,
+            error: 'The office with given id was not found',
+          });
+          return;
+        }
+        const data = office;
+        res.status(200).send({
+          status: 200,
+          data,
+          message: 'Office\'s Details Retrieved',
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch office',
+          err: err.message,
+        });
+      }))
+  }
 }
 export default OfficeController;

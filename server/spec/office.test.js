@@ -96,3 +96,51 @@ describe('GET ALL OFFICE /api/v1/offices', () => {
       .end(done);
   });
 });
+
+describe('GET SELECTED OFFICES /api/v1/offices/:id', () => {
+  let officeId = '';
+  it('OFFICES WITH NO  VALID ID should return  status 404', (done) => {
+    officeId = 5;
+    request
+      .get(`/api/v1/offices/${officeId}`)
+      .expect(404)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 404,
+          error: 'The office with given id was not found',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('OFFICE WITH ID THAT ISNAN should return  status 400', (done) => {
+    officeId = 's';
+    request
+      .get(`/api/v1/offices/${officeId}`)
+      .expect(400)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 400,
+          error: 'Enter the correct office parameter',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('OFFICE WITH VALID ID should return  status 200', (done) => {
+    officeId = 1;
+    request
+      .get(`/api/v1/offices/${officeId}`)
+      .expect(200)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+  it('should return  selected order in JSON format', (done) => {
+    request
+      .get(`/api/v1/offices/${officeId}`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+});
