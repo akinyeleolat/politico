@@ -191,18 +191,12 @@ export const createTable = () => {
     });
   });
 };
-if (env === 'test') {
-  dropTable().then(() => {
-    console.log('Tables  dropped and created');
-  }).catch((error) => {
-    console.log('There was an error.', error);
-  });
-} else {
-  createTable().then(() => {
-    console.log('Tables  created');
-  }).catch((error) => {
-    console.log('There was an error.', error);
-  });
-}
+
+createTable().then(() => {
+  console.log('Tables  created');
+}).catch((error) => {
+  console.log('There was an error.', error);
+});
+
 
 export default db;

@@ -4,6 +4,7 @@
   "description": "allows user, politician and electoral body to manage voting process and administration",
   "main": "app.js",
   "scripts": {
+    "pretest":"set NODE_ENV=test&& babel-node server/db/cleardb.js",
     "test": "set NODE_ENV=test&& npm run migrate &&  nyc mocha --require babel-core/register server/spec/* --timeout 500000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "babel-node": "babel-node --presets=env",
