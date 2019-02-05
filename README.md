@@ -39,6 +39,21 @@ NA
 
 # UI Templates
 The application is hosted online on gh-pages with [ Politico ] (https://akinyeleolat.github.io/politico/UI/)
+LOGIN TO DEMO ADMIN
+<ul>
+<li>username:admin@gmail.com</li>
+<li>password:admin</li>
+</ul>
+LOGIN TO DEMO POLITICIAN
+<ul>
+<li>username:politician@gmail.com</li>
+<li>password:admin</li>
+</ul>
+LOGIN TO DEMO USER
+<ul>
+<li>username:oluwatosin@gmail.com</li>
+<li>password:admin</li>
+</ul>
 
 # API Documentation
 to be added later

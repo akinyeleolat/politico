@@ -3,6 +3,8 @@ import validateUpdateParty from './validateUpdateParty';
 import validateOfficeInput from './validateOfficeInput';
 import validateSignUp from './validateSignUp';
 import validateUserLogin from './validateUserLogin';
+import verifyToken from './verifyToken';
+import verifyAdminToken from './verifyAdminToken';
 
 const middlewares = {
   validateSignUp,
@@ -10,5 +12,7 @@ const middlewares = {
   validateCreateParty,
   validateUpdateParty,
   validateOfficeInput,
+  verifyToken,
+  verifyAdminToken,
 };
 export default middlewares;

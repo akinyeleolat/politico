@@ -1,7 +1,5 @@
-import bcrypt from 'bcrypt-nodejs';
-
-/** Class for interacting with the user data table. */
-export default class User {
+/** Class for interacting with the candidate data table. */
+export default class Candidate {
   /**
   * Class constructor.
   * @param {object} db - Object used to query database.
@@ -15,20 +13,18 @@ export default class User {
   */
 
   create(values) {
-    const salt = bcrypt.genSaltSync(10);
-    values.password = bcrypt.hashSync(values.password, salt);
-    const sql = 'INSERT INTO users (firstname, lastname, othername, email, phoneNumber, password, passportUrl,isAdmin) VAlUES( ${firstname}, ${lastname}, ${othername}, ${email}, ${phonenumber}, ${password}, ${passporturl},${isAdmin}) RETURNING id, firstname, lastname, othername, email, phoneNumber, passportUrl,isAdmin';
-    return this.db.query(sql, values);
+    const sql = 'INSERT INTO candidates (office,candidate,party) VAlUES( ${office}, ${candidate}, ${party}) RETURNING (SELECT officeName FROM office WHERE id=${office}) AS officeName, (SELECT lastName,firstName, otherName FROM users WHERE id=${candidate}) AS Candidate, (SELECT partyName FROM party WHERE id=${party}) AS partyName';
+    return this.db.many(sql, values);
   }
 
   /**
-  * Method for finding a user using the id.
-  * @param {number} id - the id of a user.
+  * Method for finding a candidate using the id.
+  * @param {number} id - the id of a candidate.
   */
 
   findById(id) {
-    const sql = 'SELECT * FROM users WHERE id = $1';
-    return this.db.query(sql, id);
+    const sql = 'SELECT * FROM candidates WHERE candidate = $1';
+    return this.db.oneOrNone(sql, id);
   }
   /**
 * Method for finding a user using the status.
@@ -37,16 +33,16 @@ export default class User {
 
   findByStatus(status) {
     const sql = 'SELECT id, firstname, lastname, othername, email, phoneNumber, passportUrl,isAdmin created_at FROM users WHERE user_status = $1';
-    return this.db.query(sql, status);
+    return this.db.many(sql, status);
   }
   /**
   * Method for finding a user using the email address.
   * @param {String} email - the email of a user.
   */
 
-  findByEmail() {
+  findByEmail(email) {
     const sql = 'SELECT * FROM users WHERE email = $1';
-    return this.sql;
+    return this.db.oneOrNone(sql, email);
   }
   /**
   * Method for finding a user using the telephone number.

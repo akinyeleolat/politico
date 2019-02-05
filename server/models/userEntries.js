@@ -1,12 +1,24 @@
 const firstname = 'oluwatosin';
 const lastname = 'oluwatosin';
 const othername = 'oluwatosin';
-const email = 'akinyeleolat2005@gmail.com';
+const email = process.env.TEST_USER;
 const phonenumber = '+2348032679327';
-const password = 'admin@123';
-const userpassword = 'admin@123';
+const password = process.env.TEST_PASSWORD;
 const passporturl = 'www.image.com/tosin.jpg';
 
+/**
+* This is a valid user data
+* @exports signUpData
+* */
+export const signUpData = {
+  firstname,
+  lastname,
+  othername,
+  email,
+  phonenumber,
+  password,
+  passporturl,
+};
 /**
 * This is a valid user data
 * @exports signUpData1
