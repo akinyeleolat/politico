@@ -524,7 +524,7 @@ header .highlight,section .highlight, header .current a{
   }
   
 #wrap {
-    /* background: url(../img/wallpaper2.jpg) repeat-y 0 0; */
+   
     display: flex;
     justify-content: center;
     padding: 40px; 
@@ -812,7 +812,7 @@ footer{
     }
     #showcase{
         min-height: auto;
-        background: url(../img/vote3.jpg) no-repeat 0 0;
+        background: url(../img/vote5.jpg) no-repeat 0 0;
     }
 
     #showcase div{
@@ -831,7 +831,7 @@ footer{
     }
     #newsletter button, .quote button{
         display:block;
-        /* width:100%; */
+       
     }
     #newsletter input[type="email"],#newsletter input[type="text"],.quote input,.quote textarea, .pageform{
         width:100%;
@@ -857,12 +857,10 @@ footer{
       width: 20%;
       margin-left: 0px;
       margin-right: 0px;
-      /* padding:0px; */
-      /* position: relative; */
+     
+     
   }
-  /* #partyList .card p{
-      margin-bottom: 38px;
-  } */
+ 
   
   #partyList .card:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -870,8 +868,8 @@ footer{
   
   #wrap{
       display:block;
-      /* width:80%; */
-      /* background:#fff; */
+     
+     
   }
   #left{
       display:none;
@@ -879,6 +877,14 @@ footer{
   #right{ 
     margin-top: 100px;
     border-radius: 10px 10px 10px 10px;
+  }
+  .profilecontainer{
+    width:auto;
+}
+.profileflex-container {
+    display: block;
+    float: none;
+    width: auto;
   }
 }
 @media screen and (max-width: 700px) {
@@ -892,7 +898,11 @@ footer{
     
   }
   
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 415px) {
+    #showcase{
+        min-height: auto;
+        background: url(../img/vm.jpg) repeat-y 0 0;
+    }
     .sidebar a {
       text-align: center;
       float: none;
