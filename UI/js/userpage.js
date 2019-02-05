@@ -1,9 +1,9 @@
-// Get the button that opens the modal
+
 const viewCandidate = document.getElementById('view_candidate');
 const voteCandidate = document.getElementById('vote_candidate');
-// get the view page
+
 const officeView = document.getElementById('officeView');
-//function
+
 viewCandidate.onclick = () =>{
     officeView.innerHTML = `<div class="card">
     <img src="./img/userprofile2.jpg">
