@@ -155,7 +155,7 @@ export const createTable = () => {
    );
    CREATE TABLE IF NOT EXISTS vote (
       id  SERIAL,
-      createdOn DATE NOT NULL,
+      createdOn DATE NOT NULL DEFAULT NOW(),
       createdBy INT NOT NULL,
       office INT NOT NULL,
       candidate INT NOT NULL,

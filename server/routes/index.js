@@ -4,6 +4,7 @@ import OfficeController from '../controllers/offices';
 import UserController from '../controllers/user';
 import CandidateController from '../controllers/candidate';
 import middlewares from '../middlewares';
+import VoteController from '../controllers/vote';
 
 const router = express.Router();
 router.post('/auth/signup', middlewares.validateSignUp, UserController.signup);
@@ -17,6 +18,7 @@ router.post('/parties/', middlewares.validateCreateParty, PartyController.create
 router.patch('/parties/:id/name', middlewares.validateUpdateParty, PartyController.updateParty);
 router.delete('/parties/:id', PartyController.deleteParty);
 router.post('/offices/', middlewares.validateOfficeInput, OfficeController.createOffice);
-router.post('/office/:id/register', middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
+router.post('/office/:id/register', middlewares.verifyAdminToken, middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
+router.post('/votes', middlewares.verifyToken, middlewares.validateCreateVote, VoteController.createVote);
 
 export default router;

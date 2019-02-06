@@ -10,12 +10,12 @@ export const checkEmpty = (value) => {
 };
 
 /**
-   * This function check if the value is a number.
+   * This function check if the value is a positive integer.
    * @param {number} value any
    * @returns {boolean} true or false.
    */
 export const checkNumber = (value) => {
-  if (/^[\d]+$/.test(value)) {
+  if (/^[\d+]+$/.test(value)) {
     return true;
   }
 };

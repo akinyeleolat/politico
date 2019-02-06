@@ -10,7 +10,7 @@ class CandidateController {
   static enrollCandidate(req, res) {
     const { id } = req.params;
     const candidate = Number(id);
-    if (!(/^[\d]+$/.test(id))) {
+    if (!(/^[\d]+$/.test(candidate))) {
       res.status(400).send({
         status: 400,
         error: 'Enter the correct user parameter',
@@ -23,12 +23,12 @@ class CandidateController {
     party = Number(party);
     office = Number(office);
 
-    db.query('SELECT * FROM CANDIDATES WHERE candidate=$1', [candidate])
+    db.query('SELECT office FROM CANDIDATES WHERE candidate=$1 AND office=$2', [candidate, office])
       .then((candidatesData) => {
         if (candidatesData.rows[0]) {
           return res.status(409).send({
             status: 409,
-            error: 'The candidate with given id has been enroll for an office',
+            error: 'The candidate with given id has been enroll for this office',
           });
         }
         db.query('SELECT * FROM users WHERE id=$1', [candidate])
