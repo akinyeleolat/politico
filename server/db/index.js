@@ -2,6 +2,7 @@ import path from 'path';
 import Promise from 'bluebird';
 import pgp, { QueryFile } from 'pg-promise';
 import setup from '../config/config';
+import User from '../models/user';
 
 /** @const sql - generating a full path */
 
@@ -14,6 +15,9 @@ const sql = (file) => {
 
 const initOptions = {
   promiseLib: Promise,
+  extend(obj) {
+    obj.users = new User(obj);
+  },
 };
 
 const env = process.env.NODE_ENV || 'development';
