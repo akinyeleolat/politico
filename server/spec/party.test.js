@@ -283,3 +283,41 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .end(done);
   });
 });
+describe('DELETE PARTIES /api/v1/parties/:id', () => {
+  let partyId = '';
+  it('PARTY WITH ID THAT ISNAN should return  status 400', (done) => {
+    partyId = 's';
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(400)
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 400,
+          error: 'Enter the correct party parameter',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('PARTY WITH VALID ID should return  status 200', (done) => {
+    partyId = 1;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(200)
+      .end(done);
+  });
+  it('PARTY WITH NO VALID ID should return  status 404', (done) => {
+    partyId = 2;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(404)
+      .end(done);
+  });
+  it('should return a JSON', (done) => {
+    partyId = 1;
+    request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+});
