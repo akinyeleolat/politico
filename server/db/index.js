@@ -2,6 +2,7 @@ import path from 'path';
 import Promise from 'bluebird';
 import pgp, { QueryFile } from 'pg-promise';
 import User from '../models/user';
+import Party from '../models/party';
 import setup from '../config/config';
 
 /** @const sql - generating a full path */
@@ -17,6 +18,7 @@ const initOptions = {
   promiseLib: Promise,
   extend(obj) {
     obj.users = new User(obj);
+    obj.party = new Party(obj);
   },
 };
 
