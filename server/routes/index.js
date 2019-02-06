@@ -6,6 +6,7 @@ import middlewares from '../middlewares';
 
 const router = express.Router();
 router.post('/auth/signup', middlewares.validateSignUp, UserController.signup);
+router.post('/auth/login', middlewares.validateUserLogin, UserController.login);
 router.get('/parties', PartyController.getAllParty);
 router.get('/parties/:id', PartyController.getParty);
 
