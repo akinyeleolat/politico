@@ -4,13 +4,14 @@
   "description": "allows user, politician and electoral body to manage voting process and administration",
   "main": "app.js",
   "scripts": {
-    "test": "set NODE_ENV=test &&  nyc mocha --require babel-core/register server/spec/* --timeout 500000 --exit",
+    "test": "set NODE_ENV=test&& npm run migrate &&  nyc mocha --require babel-core/register server/spec/* --timeout 500000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "babel-node": "babel-node --presets=env",
     "start": "babel-node -- server/app.js",
     "dev": "nodemon server/app.js --exec babel-node",
     "lint": "eslint ./ --fix",
     "build": "babel src -d dist",
+    "migrate": "babel-node server/db",
     "postinstall": "npm install babel-cli babel-preset-env babel-register"
   },
   "repository": {
