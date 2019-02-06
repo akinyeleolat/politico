@@ -4,6 +4,7 @@ import pgp, { QueryFile } from 'pg-promise';
 import User from '../models/user';
 import Party from '../models/party';
 import setup from '../config/config';
+import Office from '../models/offices';
 
 /** @const sql - generating a full path */
 
@@ -19,6 +20,7 @@ const initOptions = {
   extend(obj) {
     obj.users = new User(obj);
     obj.party = new Party(obj);
+    obj.office = new Office(obj);
   },
 };
 
