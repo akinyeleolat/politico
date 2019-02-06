@@ -142,3 +142,51 @@ describe('GET ALL PARTY /api/v1/parties', () => {
       .end(done);
   });
 });
+
+describe('GET SELECTED PARTIES /api/v1/parties/:id', () => {
+  let partyId = '';
+  it('PARTY WITH NO  VALID ID should return  status 404', (done) => {
+    partyId = 3;
+    request
+      .get(`/api/v1/parties/${partyId}`)
+      .expect(404)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 404,
+          error: 'The party with given id was not found',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('PARTY WITH ID THAT ISNAN should return  status 404', (done) => {
+    partyId = 's';
+    request
+      .get(`/api/v1/parties/${partyId}`)
+      .expect(400)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end((err, res) => {
+        expect(res.body).deep.equal({
+          status: 400,
+          error: 'Enter the correct party parameter',
+        });
+        if (err) done(err);
+        done();
+      });
+  });
+  it('PARTY WITH VALID ID should return  status 200', (done) => {
+    partyId = 1;
+    request
+      .get(`/api/v1/parties/${partyId}`)
+      .expect(200)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+  it('should return  selected order in JSON format', (done) => {
+    request
+      .get(`/api/v1/parties/${partyId}`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+});
