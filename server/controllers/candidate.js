@@ -26,32 +26,32 @@ class CandidateController {
     db.query('SELECT office FROM CANDIDATES WHERE candidate=$1 AND office=$2', [candidate, office])
       .then((candidatesData) => {
         if (candidatesData.rows[0]) {
-          return res.status(409).send({
-            status: 409,
+          return res.status(400).send({
+            status: 400,
             error: 'The candidate with given id has been enroll for this office',
           });
         }
         db.query('SELECT * FROM users WHERE id=$1', [candidate])
           .then((userData) => {
             if (!userData.rows[0]) {
-              return res.status(409).send({
-                status: 409,
+              return res.status(400).send({
+                status: 400,
                 error: 'The candidate with given id does not exist',
               });
             }
             db.query('SELECT * FROM office WHERE id=$1', [office])
               .then((officeData) => {
                 if (!officeData.rows[0]) {
-                  return res.status(409).send({
-                    status: 409,
+                  return res.status(400).send({
+                    status: 400,
                     error: 'The office does not exist',
                   });
                 }
                 db.query('SELECT * FROM party WHERE id=$1', [party])
                   .then((partyData) => {
                     if (!partyData.rows[0]) {
-                      return res.status(409).send({
-                        status: 409,
+                      return res.status(400).send({
+                        status: 400,
                         error: 'The party does not exist',
                       });
                     }

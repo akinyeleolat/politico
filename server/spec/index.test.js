@@ -121,20 +121,20 @@ describe('All Test Cases for Users Sign Up', () => {
       .expect(400)
       .end(done);
   });
-  it('Duplicate email should return status 409', (done) => {
+  it('Duplicate email should return status 400', (done) => {
     const testData = test.signUpData10;
     request
       .post('/api/v1/auth/signup')
       .send(testData)
-      .expect(409)
+      .expect(400)
       .end(done);
   });
-  it('Duplicate phonenumber should return status 409', (done) => {
+  it('Duplicate phonenumber should return status 400', (done) => {
     const testData = test.signUpData11;
     request
       .post('/api/v1/auth/signup')
       .send(testData)
-      .expect(409)
+      .expect(400)
       .end(done);
   });
   it('Valid request should return JSON Format', (done) => {

@@ -38,7 +38,7 @@ const dropTable = () => {
   });
 };
 dropTable().then(() => {
-  console.log('Datatbase refreshed');
+  console.log('Database refreshed');
 }).catch((error) => {
   console.log('There was an error.', error);
 });

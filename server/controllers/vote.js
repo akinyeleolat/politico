@@ -19,32 +19,32 @@ class VoteController {
     db.query('SELECT office FROM VOTE WHERE createdBy=$1 AND office=$2', [voter, office])
       .then((voteData) => {
         if (voteData.rows[0]) {
-          return res.status(409).send({
-            status: 409,
+          return res.status(400).send({
+            status: 400,
             error: 'The voter with given id has voted a candidate for this office',
           });
         }
         db.query('SELECT * FROM users WHERE id=$1', [candidate])
           .then((userData) => {
             if (!userData.rows[0]) {
-              return res.status(404).send({
-                status: 404,
+              return res.status(400).send({
+                status: 400,
                 error: 'The candidate with given id does not exist',
               });
             }
             db.query('SELECT * FROM office WHERE id=$1', [office])
               .then((officeData) => {
                 if (!officeData.rows[0]) {
-                  return res.status(404).send({
-                    status: 404,
+                  return res.status(400).send({
+                    status: 400,
                     error: 'The office does not exist',
                   });
                 }
                 db.query('SELECT * FROM CANDIDATES WHERE candidate=$1', [candidate])
                   .then((candidateData) => {
                     if (!candidateData.rows[0]) {
-                      return res.status(404).send({
-                        status: 404,
+                      return res.status(400).send({
+                        status: 400,
                         error: 'The candidate has not been enrolled for an office',
                       });
                     }

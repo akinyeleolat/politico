@@ -22,16 +22,16 @@ class PartyController {
     db.query('SELECT * FROM party WHERE partyName = $1', [partyName])
       .then((result) => {
         if (result.rows[0]) {
-          return res.status(409).json({
-            status: 409,
+          return res.status(400).json({
+            status: 400,
             error: 'party with this name already exist',
           });
         }
         db.query('SELECT * FROM party WHERE partyDetail = $1',[partyDetail])
           .then((found) => {
             if (found.rows[0]) {
-              return res.status(409).json({
-                status: 409,
+              return res.status(400).json({
+                status: 400,
                 error: 'party with this detail already exist',
               });
             }
@@ -109,8 +109,8 @@ class PartyController {
     db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
         if (!party.rows[0]) {
-          res.status(404).send({
-            status: 404,
+          res.status(400).send({
+            status: 400,
             error: 'The party with given id was not found',
           });
           return;
@@ -149,11 +149,11 @@ class PartyController {
     let { partyName, partyDetail } = req.body;
     partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
     partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
-    return db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
+    db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
         if (!party.rows[0]) {
-          res.status(404).send({
-            status: 404,
+          res.status(400).send({
+            status: 400,
             error: 'The party with given id was not found',
           });
           return;
@@ -199,11 +199,11 @@ class PartyController {
       return;
     }
     const partyId = Number(id);
-    return db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
+    db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
         if (!party.rows[0]) {
-          res.status(404).send({
-            status: 404,
+          res.status(400).send({
+            status: 400,
             error: 'The party with given id was not found',
           });
           return;
