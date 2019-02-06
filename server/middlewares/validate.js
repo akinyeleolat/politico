@@ -15,7 +15,7 @@ export const checkEmpty = (value) => {
    * @returns {boolean} true or false.
    */
 export const checkNumber = (value) => {
-  if (isNaN(value)) {
+  if (/^[\d]+$/.test(value)) {
     return true;
   }
 };

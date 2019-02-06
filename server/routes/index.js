@@ -17,6 +17,6 @@ router.post('/parties/', middlewares.validateCreateParty, PartyController.create
 router.patch('/parties/:id/name', middlewares.validateUpdateParty, PartyController.updateParty);
 router.delete('/parties/:id', PartyController.deleteParty);
 router.post('/offices/', middlewares.validateOfficeInput, OfficeController.createOffice);
-router.post('/office/:id/register', CandidateController.enrollCandidate);
+router.post('/office/:id/register', middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
 
 export default router;

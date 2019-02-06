@@ -83,7 +83,7 @@ class OfficeController {
   static getOffice(req, res) {
     let { id } = req.params;
     id = Number(id);
-    if (isNaN(id)) {
+    if (!(/^[\d]+$/.test(id))) {
       res.status(400).send({
         status: 400,
         error: 'Enter the correct office parameter',

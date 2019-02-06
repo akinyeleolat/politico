@@ -193,7 +193,7 @@ export const createTable = () => {
 };
 
 createTable().then(() => {
-  console.log('Tables  created');
+  console.log('Database Initialized');
 }).catch((error) => {
   console.log('There was an error.', error);
 });
