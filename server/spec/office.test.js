@@ -82,3 +82,17 @@ describe('POST OFFICES /api/v1/offices', () => {
       .end(done);
   });
 });
+describe('GET ALL OFFICE /api/v1/offices', () => {
+  it('should return status 200', (done) => {
+    request
+      .get('/api/v1/offices')
+      .expect(200)
+      .end(done);
+  });
+  it('should return all order in JSON format', (done) => {
+    request
+      .get('/api/v1/offices')
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+});
