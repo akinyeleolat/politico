@@ -20,5 +20,6 @@ router.delete('/parties/:id', PartyController.deleteParty);
 router.post('/offices/', middlewares.validateOfficeInput, OfficeController.createOffice);
 router.post('/office/:id/register', middlewares.verifyAdminToken, middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
 router.post('/votes', middlewares.verifyToken, middlewares.validateCreateVote, VoteController.createVote);
+router.get('/office/:id/result', VoteController.getVoteResult);
 
 export default router;
