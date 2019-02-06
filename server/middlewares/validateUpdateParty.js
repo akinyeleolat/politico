@@ -13,7 +13,7 @@ import * as validate from './validate';
    * @exports validateUpdateParty
    */
 const validateUpdateParty = (req, res, next) => {
-  if (req.body.constructor === Object && Object.keys(req.body).length === 0) next(validate.validationError(req, 'Party Name, Detail, logoUrl and Headquarter address is required'));
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) next(validate.validationError(req, 'Party Name and Party Detail required'));
   if (req.error) return next(validate.getErrorMsg(req, res));
   if (req.body.partyName === undefined) next(validate.validationError(req, 'Party Name required'));
   if (req.body.partyDetail === undefined) next(validate.validationError(req, 'Party Detail required'));
