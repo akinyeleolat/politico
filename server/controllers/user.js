@@ -11,7 +11,7 @@ class UserController {
  * @static
  */
   static signup(req, res) {
-    const isAdmin = process.env.USER_DEFAULT;
+    const isAdmin = req.body.isAdmin || process.env.USER_DEFAULT;
     let {
       firstname, lastname, othername, email, phonenumber, passporturl,
     } = req.body;
@@ -42,12 +42,12 @@ class UserController {
                 error: 'user with this phonenumber number already exist',
               });
             }
-            db.query('INSERT INTO users (firstname, lastname, othername, email, phoneNumber, password, passportUrl,isAdmin) VAlUES( $1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, firstname, lastname, othername, email, phoneNumber, passportUrl,isAdmin', [firstname, lastname, othername, email, phonenumber, password, passporturl, isAdmin ])
+            db.query('INSERT INTO users (firstname, lastname, othername, email, phoneNumber, password, passportUrl,isAdmin) VAlUES( $1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, firstname, lastname, othername, email, phoneNumber, passportUrl,isadmin', [firstname, lastname, othername, email, phonenumber, password, passporturl, isAdmin])
               .then((user) => {
                 const userProfile = user.rows[0];
                 const token = jwt.sign(
                   {
-                    id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isAdmin,
+                    id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isadmin,
                   }, process.env.SECRET_KEY, { expiresIn: '1h' },
                 );
                 const data = {
@@ -103,11 +103,11 @@ class UserController {
         const userProfile = user.rows[0];
         const token = jwt.sign(
           {
-            id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isAdmin,
+            id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isadmin,
           }, process.env.SECRET_KEY, { expiresIn: '1h' },
         );
         const authUser = {
-          id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isAdmin,
+          id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isadmin,
         };
         const data = {
           token,

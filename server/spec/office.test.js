@@ -11,7 +11,7 @@ let token;
 before((done) => {
   request
     .post('/api/v1/auth/signup')
-    .send(user.signUpData)
+    .send(user.signUpAdmin)
     .expect(201)
     .end((err, res) => {
       token = res.body.data.token;

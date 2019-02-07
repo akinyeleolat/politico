@@ -6,7 +6,7 @@ import * as test from '../models/partyEntries';
 
 const { expect } = chai;
 const request = supertest.agent(app);
-const { email, password } = user.signUpData;
+const { email, password } = user.signUpAdmin;
 let token;
 const authUser = {
   email,
