@@ -6,7 +6,7 @@ const config = setup[env];
 
 let $db;
 
-if (config.use_env_variable) {
+if (env === 'production') {
   $db = new Pool({ connectionString: process.env.DATABASE_URL });
 } else {
   $db = new Pool(config);
