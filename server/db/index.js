@@ -7,7 +7,7 @@ const config = setup[env];
 let $db;
 
 if (config.use_env_variable) {
-  $db = new Pool(process.env[config.use_env_variable]);
+  $db = new Pool({ connectionstring: process.env.DATABASE_URL });
 } else {
   $db = new Pool(config);
 }
