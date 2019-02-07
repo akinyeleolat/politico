@@ -109,12 +109,10 @@ class UserController {
         const authUser = {
           id: userProfile.id, firstname: userProfile.firstname, lastname: userProfile.lastname, othername: userProfile.othername, email: userProfile.email, phonenumber: userProfile.phonenumber, user_image: userProfile.passporturl, isAdmin: userProfile.isAdmin,
         };
-        const data = [
-          {
-            token,
-            user: authUser,
-          },
-        ];
+        const data = {
+          token,
+          user: authUser,
+        };
         return res.status(200).json({
           status: 200,
           data,

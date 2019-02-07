@@ -7,7 +7,7 @@ const { expect } = chai;
 const request = supertest.agent(app);
 
 describe('Invalid routes', () => {
-  it('should return status 404', (done) => {
+  it('should return status 401', (done) => {
     request
       .get('/v1/')
       .expect(404)
@@ -27,7 +27,7 @@ describe('Valid routes', () => {
       .expect(404)
       .end(done);
   });
-  it('invalid route should return status 404', (done) => {
+  it('invalid route should return status 401', (done) => {
     request
       .get('/*')
       .expect(404)

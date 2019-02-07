@@ -27,8 +27,8 @@ export const signUpData1 = {
   firstname,
   lastname,
   othername,
-  email,
-  phonenumber,
+  email: 'akinyeleolat@gmail.com',
+  phonenumber: '+2348043435656',
   password,
   passporturl,
 };
