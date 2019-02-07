@@ -27,6 +27,7 @@ var officeForm = document.getElementById("getForm");
 
 
 var btn = document.getElementById("myBtn");
+var btn2 = document.getElementById("myBtn2");
 var editBtn = document.getElementById("editParty");
 var officeBtn = document.getElementById("officeBtn");
 var deleteParty = document.getElementById("partyName");
@@ -40,6 +41,7 @@ btn.onclick = function() {
   headerTitle.innerHTML = "CREATE NEW PARTY";
   officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">Upload Logo</button></a></p>
   <p><input type="text" id="pName" placeholder="Party Name"></p>
+  <p><input type="text" id="pDetails" placeholder="Party Detail"></p>
   <p><textarea  id="hqAddress" placeholder="Headquarter Address"></textarea></p>
   <p><input type="submit" id="formBtn" value="Create Party"  class="button_1"></p>`
 }
