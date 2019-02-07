@@ -25,6 +25,7 @@ before((done) => {
     });
 });
 
+
 describe('POST PARTY /api/v1/parties', () => {
   it('EMPTY PARTY DATA should return status 400', (done) => {
     const emptyPartyData = {}
@@ -36,7 +37,7 @@ describe('POST PARTY /api/v1/parties', () => {
       .expect(400)
       .end(done);
   });
-  it('Valid input should return json', (done) => {
+  it('Valid input should return 200', (done) => {
     const newParty = test.partyData1;
     request
       .post('/api/v1/parties')
@@ -46,7 +47,7 @@ describe('POST PARTY /api/v1/parties', () => {
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });
-  it('Valid input should return 200', (done) => {
+  it('Valid input should return json', (done) => {
     const newParty = test.partyData1;
     request
       .post('/api/v1/parties')
@@ -380,7 +381,7 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
       .end(done);
   });
   it('PARTY WITH NO VALID ID should return  status 400', (done) => {
-    partyId = 2;
+    partyId = 10;
     request
       .delete(`/api/v1/parties/${partyId}`)
       .set('token', token)

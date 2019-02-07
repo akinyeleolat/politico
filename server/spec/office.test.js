@@ -7,6 +7,7 @@ import * as test from '../models/officeEntries';
 
 const { expect } = chai;
 const request = supertest.agent(app);
+
 let token;
 before((done) => {
   request

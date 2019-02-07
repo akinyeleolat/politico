@@ -14,6 +14,16 @@ export const partyData1 = {
   logoUrl,
 };
 /**
+* This is a valid party data
+* @exports partyData1a
+* */
+export const partyData1a = {
+  partyName: 'PDP',
+  partyDetail: 'People Democratic Party',
+  hqAddress,
+  logoUrl,
+};
+/**
 * This is empty party Name
 * @exports partyData2
 * */
