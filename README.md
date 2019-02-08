@@ -34,9 +34,6 @@ Currently,
 # Pivotal Tracker
 Politico app project is broken down into small task with pivotal tracker board. The link to the relevant Pivoltal tracker board is (https://www.pivotaltracker.com/projects/2240024)
 
-# API Enpoint
-NA
-
 # UI Templates
 The application is hosted online on gh-pages with [ Politico ] (https://akinyeleolat.github.io/politico/UI/)
 LOGIN TO DEMO ADMIN
@@ -56,7 +53,7 @@ LOGIN TO DEMO USER
 </ul>
 
 # API Documentation
-to be added later
+The API documentation can be seen on [ Politico ] (https://ngpolitico.herokuapp.com/api-docs)
 
 # Features
 Currently,

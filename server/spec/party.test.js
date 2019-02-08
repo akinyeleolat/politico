@@ -203,14 +203,7 @@ describe('GET SELECTED PARTIES /api/v1/parties/:id', () => {
       .get(`/api/v1/parties/${partyId}`)
       .expect(400)
       .expect('Content-Type', 'application/json; charset=utf-8')
-      .end((err, res) => {
-        expect(res.body).deep.equal({
-          status: 400,
-          error: 'The party with given id was not found',
-        });
-        if (err) done(err);
-        done();
-      });
+      .end(done);
   });
   it('PARTY WITH ID THAT ISNAN should return  status 400', (done) => {
     partyId = 's';
@@ -386,7 +379,7 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
       .delete(`/api/v1/parties/${partyId}`)
       .set('token', token)
       .set('Authorization', token)
-      .expect(400)
+      .expect(404)
       .end(done);
   });
   it('should return a JSON', (done) => {

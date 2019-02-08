@@ -202,8 +202,8 @@ class PartyController {
     db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
         if (!party.rows[0]) {
-          res.status(400).send({
-            status: 400,
+          res.status(404).send({
+            status: 404,
             error: 'The party with given id was not found',
           });
           return;
