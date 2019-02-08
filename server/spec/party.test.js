@@ -1,21 +1,22 @@
 import supertest from 'supertest';
 import chai from 'chai';
 import app from '../app';
-
+import * as user from '../models/userEntries';
 import * as test from '../models/partyEntries';
 
 const { expect } = chai;
 const request = supertest.agent(app);
+
 describe('POST PARTY /api/v1/parties', () => {
   it('EMPTY PARTY DATA should return status 404', (done) => {
-    const emptyPartyData = {};
+    const emptyPartyData = {}
     request
       .post('/api/v1/parties')
       .send(emptyPartyData)
       .expect(400)
       .end(done);
   });
-  it('Valid input should return 200', (done) => {
+  it('Valid input should return json', (done) => {
     const newParty = test.partyData1;
     request
       .post('/api/v1/parties')

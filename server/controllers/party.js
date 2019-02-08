@@ -19,26 +19,27 @@ class PartyController {
     hqAddress = hqAddress ? hqAddress.toString().replace(/\s+/g, ' ') : hqAddress;
     logoUrl = logoUrl ? logoUrl.toString().replace(/\s+/g, '') : logoUrl;
 
-    return db.task('createParty', db => db.party.findByName(partyName)
+    db.query('SELECT * FROM party WHERE partyName = $1', [partyName])
       .then((result) => {
-        if (result) {
+        if (result.rows[0]) {
           return res.status(409).json({
             status: 409,
             error: 'party with this name already exist',
           });
         }
-        return db.party.findByDetail(partyDetail)
+        db.query('SELECT * FROM party WHERE partyDetail = $1',[partyDetail])
           .then((found) => {
-            if (found) {
+            if (found.rows[0]) {
               return res.status(409).json({
                 status: 409,
                 error: 'party with this detail already exist',
               });
             }
-            return db.party.create({partyName, partyDetail, hqAddress, logoUrl })
+            db.query('INSERT INTO party (partyName, partyDetail, hqAddress, logoUrl) VAlUES($1,$2,$3,$4) RETURNING *', [partyName, partyDetail, hqAddress, logoUrl])
               .then((party) => {
+                const partyId = party.rows[0].id;
                 const partyProfile = {
-                  id: party.id,
+                  id: partyId,
                   partyName,
                   partyDetail,
                   hqAddress,
@@ -63,7 +64,7 @@ class PartyController {
           error: 'unable to create party',
           err: err.message,
         });
-      }))
+      });
   }
 
   /**
@@ -72,9 +73,9 @@ class PartyController {
  * @static
  */
   static getAllParty(req, res) {
-    return db.task('AllParty', db => db.party.allData()
+    db.query('SELECT * FROM PARTY')
       .then((party) => {
-        const data = party;
+        const data = party.rows;
         return res.status(200).send({
           status: 200,
           data,
@@ -87,7 +88,7 @@ class PartyController {
           error: 'unable to fetch party',
           err: err.message,
         });
-      }));
+      });
   }
 
   /**
@@ -105,16 +106,16 @@ class PartyController {
       });
       return;
     }
-    db.task('getParty', db => db.party.findById(id)
+    db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
-        if (!party) {
+        if (!party.rows[0]) {
           res.status(404).send({
             status: 404,
             error: 'The party with given id was not found',
           });
           return;
         }
-        const data = party;
+        const data = party.rows[0];
         res.status(200).send({
           status: 200,
           data,
@@ -127,7 +128,7 @@ class PartyController {
           error: 'unable to fetch party',
           err: err.message,
         });
-      }))
+      });
   }
 
   /**
@@ -147,18 +148,18 @@ class PartyController {
     let { partyName, partyDetail } = req.body;
     partyName = partyName ? partyName.toString().replace(/\s+/g, '') : partyName;
     partyDetail = partyDetail ? partyDetail.toString().replace(/\s+/g, ' ') : partyDetail;
-    return db.task('getParty', db => db.party.findById(id)
+    return db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
       .then((party) => {
-        if (!party) {
+        if (!party.rows[0]) {
           res.status(404).send({
             status: 404,
             error: 'The party with given id was not found',
           });
           return;
         }
-        db.task('updateParty', db => db.party.modifyName({ partyName, partyDetail }, partyId)
+        db.query('UPDATE party SET partyName = $1, partyDetail=$2 WHERE id=$3 RETURNING *', [partyName, partyDetail, partyId])
           .then((party) => {
-            const data = party;
+            const data = party.rows[0];
             return res.status(200).send({
               status: 200,
               data,
@@ -171,7 +172,7 @@ class PartyController {
               error: 'unable to update party name',
               err: err.message,
             });
-          }));
+          });
       })
       .catch((err) => {
         return res.status(500).json({
@@ -179,7 +180,7 @@ class PartyController {
           error: 'unable to fetch party',
           err: err.message,
         });
-      }))
+      });
   }
 
   /**
@@ -196,20 +197,20 @@ class PartyController {
       });
     }
     const partyId = Number(id);
-    return db.task('getParty', db => db.party.findById(id)
-      .then((partyData) => {
-        if (!partyData) {
+    return db.query('SELECT * FROM PARTY WHERE ID=$1', [id])
+      .then((party) => {
+        if (!party.rows[0]) {
           res.status(404).send({
             status: 404,
             error: 'The party with given id was not found',
           });
           return;
         }
-        db.task('deleteParty', db => db.party.remove(partyId)
+        db.query('DELETE FROM party WHERE id = $1 RETURNING *', [partyId])
           .then((party) => {
             return res.status(200).send({
               status: 200,
-              message: `${party.partyname} deleted`,
+              message: `${party.rows[0].partyname} deleted`,
             });
           })
           .catch((err) => {
@@ -218,7 +219,7 @@ class PartyController {
               error: 'unable to delete party',
               err: err.message,
             });
-          }));
+          });
       })
       .catch((err) => {
         return res.status(500).json({
@@ -226,7 +227,7 @@ class PartyController {
           error: 'unable to fetch party',
           err: err.message,
         });
-      }))
+      });
   }
 }
 export default PartyController;

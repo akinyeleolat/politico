@@ -1,44 +1,44 @@
-import path from 'path';
-import Promise from 'bluebird';
-import pgp, { QueryFile } from 'pg-promise';
+import { Pool } from 'pg';
 import setup from '../config/config';
 
-
-/** @const sql - generating a full path */
-
-const sql = (file) => {
-  const fullPath = path.join(__dirname, file);
-  return new QueryFile(fullPath, { minify: true });
-};
-
-/** @const initoptions pg-promise initialization options  */
-
-const initOptions = {
-  promiseLib: Promise,
-};
-
 const env = process.env.NODE_ENV || 'development';
-
 const config = setup[env];
-console.log(config);
 
 let $db;
 
 if (config.use_env_variable) {
-  $db = pgp(initOptions)(process.env[config.use_env_variable]);
+  $db = new Pool(process.env[config.use_env_variable]);
 } else {
-  $db = pgp(initOptions)(config);
+  $db = new Pool(config);
 }
 
 const db = $db;
-
-db
-  .query(sql('./clear.sql'))
-  .then(() => {
-    console.log('Database table dropped');
-  })
-  .catch((err) => {
-    console.log(err);
+/**
+   * This is a query to drop tables for testing
+   * @constant
+   */
+const dropTable = () => {
+  const query = `
+  DROP TABLE IF EXISTS users CASCADE;
+  DROP TABLE IF EXISTS party CASCADE;
+  DROP TABLE IF EXISTS office CASCADE;
+  DROP TABLE IF EXISTS candidates CASCADE;
+  DROP TABLE IF EXISTS vote CASCADE;
+  DROP TABLE IF EXISTS petitions CASCADE;
+  `;
+  return new Promise((resolve, reject) => {
+    db.query(query, (err, response) => {
+      if (err) {
+        reject(Error(err.message));
+      }
+      if (response) {
+        resolve();
+      }
+    });
   });
-
-export default db;
+};
+dropTable().then(() => {
+  console.log('Tables  dropped');
+}).catch((error) => {
+  console.log('There was an error.', error);
+});

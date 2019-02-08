@@ -13,8 +13,9 @@ export default class Party {
   */
 
   create(values) {
-    const sql = 'INSERT INTO party (partyName, partyDetail, hqAddress, logoUrl) VAlUES(${partyName},${partyDetail},${hqAddress}, ${logoUrl}) RETURNING *';
-    return this.db.one(sql, values);
+    const sql = 'INSERT INTO party (partyName, partyDetail, hqAddress, logoUrl) VAlUES($1,$2,$3,$4) RETURNING *';
+    return this.db.query(sql, values);
+    // return this.db.one(sql, values);
   }
 
   /**

@@ -15,18 +15,18 @@ class OfficeController {
     officeName = officeName ? officeName.toString().replace(/\s+/g, ' ') : officeName;
     officeType = officeType ? officeType.toString().toLowerCase().replace(/\s+/g, '') : officeType;
 
-    return db.task('createOffice', db => db.office.findByName(officeName)
+    return db.query('SELECT * FROM office WHERE officeName = $1', [officeName])
       .then((result) => {
-        if (result) {
+        if (result.rows[0]) {
           return res.status(409).json({
             status: 409,
             error: 'office with this name already exist',
           });
         }
-        return db.office.create({officeName, officeType })
+        return db.query('INSERT INTO office (officeName, officeType) VAlUES($1,$2) RETURNING *', [officeName, officeType])
           .then((office) => {
             const officeProfile = {
-              id: office.id,
+              id: office.rows[0].id,
               officeName,
               officeType,
             };
@@ -48,22 +48,22 @@ class OfficeController {
           error: 'unable to create office',
           err: err.message,
         });
-      }));
+      });
   }
-  
+
   /**
  * @function getAllOffice
  * @memberof OfficeController
  * @static
  */
   static getAllOffice(req, res) {
-    return db.task('AllOffice', db => db.office.allData()
+    return db.query('SELECT * FROM OFFICE')
       .then((office) => {
-        const data = office;
+        const data = office.rows;
         return res.status(200).send({
           status: 200,
           data,
-          message: 'Retrieved all Parties',
+          message: 'Retrieved all office',
         });
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ class OfficeController {
           error: 'unable to fetch office',
           err: err.message,
         });
-      }));
+      });
   }
 
   /**
@@ -90,16 +90,16 @@ class OfficeController {
       });
       return;
     }
-    db.task('getOffice', db => db.office.findById(id)
+    db.query('SELECT * FROM OFFICE WHERE ID=$1', [id])
       .then((office) => {
-        if (!office) {
+        if (!office.rows[0]) {
           res.status(404).send({
             status: 404,
             error: 'The office with given id was not found',
           });
           return;
         }
-        const data = office;
+        const data = office.rows[0];
         res.status(200).send({
           status: 200,
           data,
@@ -112,7 +112,7 @@ class OfficeController {
           error: 'unable to fetch office',
           err: err.message,
         });
-      }))
+      });
   }
 }
 export default OfficeController;

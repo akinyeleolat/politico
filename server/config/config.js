@@ -5,16 +5,16 @@ dotenv.config();
 export default {
   development: {
     user: 'postgres',
-    password: process.env.DB_PASS,
-    database: process.env.DEV_DB,
     host: '127.0.0.1',
+    database: process.env.DEV_DB,
+    password: process.env.DB_PASS,
     port: 5432,
   },
   test: {
     user: 'postgres',
-    password: process.env.DB_PASS,
-    database: process.env.TEST_DB,
     host: '127.0.0.1',
+    database: process.env.TEST_DB,
+    password: process.env.DB_PASS,
     port: 5432,
   },
   production: {
