@@ -5,6 +5,7 @@ const email = process.env.TEST_USER;
 const phonenumber = '+2348032679327';
 const password = process.env.TEST_PASSWORD;
 const passporturl = 'www.image.com/tosin.jpg';
+const isAdmin = process.env.ISADMIN;
 
 /**
 * This is a valid user data
@@ -18,6 +19,20 @@ export const signUpData = {
   phonenumber,
   password,
   passporturl,
+};
+/**
+* This is a valid user data
+* @exports signUpAdmin
+* */
+export const signUpAdmin = {
+  firstname,
+  lastname,
+  othername,
+  email: process.env.TEST_ADMIN,
+  phonenumber: '+3458056565656',
+  password: process.env.TEST_PASSWORD,
+  passporturl,
+  isAdmin,
 };
 /**
 * This is a valid user data

@@ -6,6 +6,25 @@ import * as test from '../models/partyEntries';
 
 const { expect } = chai;
 const request = supertest.agent(app);
+const { email, password } = user.signUpAdmin;
+let token;
+const authUser = {
+  email,
+  password,
+}
+before((done) => {
+  request
+    .post('/api/v1/auth/login')
+    .send(authUser)
+    .expect(200)
+    .end((err, res) => {
+      token = res.body.data.token;
+      expect(res.status).to.equal(200);
+      if (err) done(err);
+      done();
+    });
+});
+
 
 describe('POST PARTY /api/v1/parties', () => {
   it('EMPTY PARTY DATA should return status 400', (done) => {
@@ -13,15 +32,9 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(emptyPartyData)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
-      .end(done);
-  });
-  it('Valid input should return json', (done) => {
-    const newParty = test.partyData1;
-    request
-      .post('/api/v1/parties')
-      .send(newParty)
-      .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });
   it('Valid input should return 200', (done) => {
@@ -29,6 +42,18 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .end(done);
+  });
+  it('Valid input should return json', (done) => {
+    const newParty = test.partyData1;
+    request
+      .post('/api/v1/parties')
+      .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });
@@ -37,6 +62,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -45,6 +72,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -53,6 +82,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -61,6 +92,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -69,6 +102,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -77,6 +112,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -85,6 +122,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -93,6 +132,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -101,6 +142,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -109,6 +152,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -117,6 +162,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -125,6 +172,8 @@ describe('POST PARTY /api/v1/parties', () => {
     request
       .post('/api/v1/parties')
       .send(newParty)
+      .set('token', token)
+      .set('Authorization', token)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });
@@ -133,6 +182,8 @@ describe('GET ALL PARTY /api/v1/parties', () => {
   it('should return status 200', (done) => {
     request
       .get('/api/v1/parties')
+      .set('token', token)
+      .set('Authorization', token)
       .expect(200)
       .end(done);
   });
@@ -202,6 +253,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end((err, res) => {
         expect(res.body).deep.equal({
           status: 400,
@@ -218,6 +271,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(200)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH NO VALID ID should return  status 400', (done) => {
@@ -227,6 +282,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY DETAIL should return  status 400', (done) => {
@@ -236,6 +293,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY PARTY NAME should return  status 400', (done) => {
@@ -245,6 +304,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH VALID ID BUT PARTY NAME with spaces should return  status 400', (done) => {
@@ -254,6 +315,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH VALID ID BUT EMPTY PARTY DETAIL should return  status 400', (done) => {
@@ -263,6 +326,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('PARTY WITH VALID ID BUT PARTY DETAIL with spaces should return  status 400', (done) => {
@@ -272,6 +337,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect(400)
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
   it('should return a JSON', (done) => {
@@ -281,6 +348,8 @@ describe('PATCH/UPDATE PARTIES /api/v1/parties/:id/name', () => {
       .patch(`/api/v1/parties/${partyId}/name`)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .send(newData)
+      .set('token', token)
+      .set('Authorization', token)
       .end(done);
   });
 });
@@ -290,6 +359,8 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
     partyId = 's';
     request
       .delete(`/api/v1/parties/${partyId}`)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end((err, res) => {
         expect(res.body).deep.equal({
@@ -304,13 +375,17 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
     partyId = 1;
     request
       .delete(`/api/v1/parties/${partyId}`)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(200)
       .end(done);
   });
   it('PARTY WITH NO VALID ID should return  status 400', (done) => {
-    partyId = 2;
+    partyId = 10;
     request
       .delete(`/api/v1/parties/${partyId}`)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -318,6 +393,8 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
     partyId = 1;
     request
       .delete(`/api/v1/parties/${partyId}`)
+      .set('token', token)
+      .set('Authorization', token)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });

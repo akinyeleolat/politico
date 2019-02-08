@@ -1,11 +1,27 @@
 import supertest from 'supertest';
 import chai from 'chai';
 import app from '../app';
-
+import * as user from '../models/userEntries';
 import * as test from '../models/officeEntries';
+
 
 const { expect } = chai;
 const request = supertest.agent(app);
+
+let token;
+before((done) => {
+  request
+    .post('/api/v1/auth/signup')
+    .send(user.signUpAdmin)
+    .expect(201)
+    .end((err, res) => {
+      token = res.body.data.token;
+      expect(res.status).to.equal(201);
+      if (err) done(err);
+      done();
+    });
+});
+
 
 describe('POST OFFICES /api/v1/offices', () => {
   let newOffice = '';
@@ -14,6 +30,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(emptyOfficeData)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -22,6 +40,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(201)
       .end(done);
   });
@@ -30,6 +50,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -38,6 +60,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -46,6 +70,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -54,6 +80,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -62,6 +90,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -70,6 +100,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect(400)
       .end(done);
   });
@@ -78,6 +110,8 @@ describe('POST OFFICES /api/v1/offices', () => {
     request
       .post('/api/v1/offices')
       .send(newOffice)
+      .set('token', token)
+      .set('Authorization', token)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end(done);
   });
