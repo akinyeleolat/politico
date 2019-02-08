@@ -13,9 +13,9 @@ class UserController {
   static signup(req, res) {
     const isAdmin = req.body.isAdmin || process.env.USER_DEFAULT;
     let {
-      firstname, lastname, othername, email, phonenumber, passporturl,
+      firstname, lastname, othername, email, phonenumber, passporturl, password,
     } = req.body;
-    let { password } = req.body;
+    // let { password } = req.body;
     firstname = firstname ? firstname.toString().replace(/\s+/g, '') : firstname;
     lastname = lastname ? lastname.toString().replace(/\s+/g, '') : lastname;
     othername = othername ? othername.toString().replace(/\s+/g, '') : othername;
@@ -127,5 +127,30 @@ class UserController {
         });
       });
   }
+
+  /**
+ * @function getAllUsers
+ * @memberof UserController
+ * @static
+ */
+  static getAllUsers(req, res) {
+    db.query('SELECT lastname,firstname,othername,email,phonenumber,passporturl,isadmin from  users WHERE isadmin=false')
+      .then((userData) => {
+        const data = userData.rows;
+        return res.status(200).send({
+          status: 200,
+          data,
+          message: 'Retrieved all Registered Users',
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'unable to fetch party',
+          err: err.message,
+        });
+      });
+  }
+
 }
 export default UserController;

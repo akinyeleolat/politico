@@ -13,8 +13,10 @@ router.get('/parties', PartyController.getAllParty);
 router.get('/offices', OfficeController.getAllOffice);
 router.get('/parties/:id', PartyController.getParty);
 router.get('/offices/:id', OfficeController.getOffice);
+router.get('/office/:id/candidate', CandidateController.viewCandidate);
 
 /** Authenticated Admin route */
+router.get('/auth/users', middlewares.verifyAdminToken, UserController.getAllUsers);
 router.post('/parties/', middlewares.verifyAdminToken, middlewares.validateCreateParty, PartyController.createParty);
 router.patch('/parties/:id/name', middlewares.verifyAdminToken, middlewares.validateUpdateParty, PartyController.updateParty);
 router.delete('/parties/:id', middlewares.verifyAdminToken, PartyController.deleteParty);
