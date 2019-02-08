@@ -1,0 +1,349 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Politico API DOcs
+  description: 'Politico is an online voting app which enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency. The Online fulcrum for politicians, voters and electoral body.'
+  contact:
+      email: "akinyeleolat2005@gmail.com"
+  license:
+    name: "MIT License"
+    url: "http://opensource.org/licenses/MIT"
+host: ngpolitico.herokuapp.com
+basePath: /api/v1
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /parties/:
+    post:
+      description: 'TODO: Add Description'
+      summary: Create Political parties
+      tags:
+      - Parties
+      operationId: PartiesPost
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: partyName
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: partyDetail
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: hqAddress
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: logoUrl
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      description: 'TODO: Add Description'
+      summary: Get All Parties
+      tags:
+      - Parties
+      operationId: PartiesGet
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /parties/1/name:
+    patch:
+      description: 'TODO: Add Description'
+      summary: Update political parties name
+      tags:
+      - Parties
+      operationId: Parties1NamePatch
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: partyName
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: partyDetail
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /parties/1:
+    get:
+      description: 'TODO: Add Description'
+      summary: Get Selected parties base on id
+      tags:
+      - Parties
+      operationId: Parties1Get
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+    delete:
+      description: 'TODO: Add Description'
+      summary: Delete parties base on id
+      tags:
+      - Parties
+      operationId: Parties1Delete
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /auth/signup:
+    post:
+      description: Users sign up to have access into the politico app
+      summary: Sign up
+      tags:
+      - Users
+      operationId: AuthSignupPost
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: firstname
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: lastname
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: email
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: phonenumber
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: password
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: passporturl
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /auth/login:
+    post:
+      description: Users Login if the account has been created before
+      summary: Login users
+      tags:
+      - Users
+      operationId: AuthLoginPost
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: email
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: password
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /auth/users:
+    get:
+      description: Admin permission required
+      summary: View Authenticated users
+      tags:
+      - Users
+      operationId: AuthUsersGet
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /votes:
+    post:
+      description: 'TODO: Add Description'
+      summary: Users Voting
+      tags:
+      - Votes
+      operationId: VotesPost
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /office/1/result:
+    get:
+      description: 'TODO: Add Description'
+      summary: Get results of votes base on office ID
+      tags:
+      - Votes
+      operationId: Office1ResultGet
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /offices/:
+    post:
+      description: 'TODO: Add Description'
+      summary: Create New Office
+      tags:
+      - Offices
+      operationId: OfficesPost
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      description: 'TODO: Add Description'
+      summary: Get All Offices
+      tags:
+      - Offices
+      operationId: OfficesGet
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /offices/1:
+    get:
+      description: This is base on office ID
+      summary: Get Specific Office
+      tags:
+      - Offices
+      operationId: Offices1Get
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /office/1/register:
+    post:
+      description: 'TODO: Add Description'
+      summary: Create candidate for an Office
+      tags:
+      - Offices
+      operationId: Office1RegisterPost
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /office/1/candidate:
+    get:
+      description: 'TODO: Add Description'
+      summary: Get candidate running for an office
+      tags:
+      - Offices
+      operationId: Office1CandidateGet
+      produces:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+tags:
+- name: Parties
+- name: Users
+- name: Votes
+- name: Offices
