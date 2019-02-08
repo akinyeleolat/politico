@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   });
 });
 app.use('*', (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+  const statusCode = 400;
   res.status(statusCode).json({
     success: statusCode,
     error: err.message,

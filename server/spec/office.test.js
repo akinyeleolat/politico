@@ -99,15 +99,15 @@ describe('GET ALL OFFICE /api/v1/offices', () => {
 
 describe('GET SELECTED OFFICES /api/v1/offices/:id', () => {
   let officeId = '';
-  it('OFFICES WITH NO  VALID ID should return  status 404', (done) => {
+  it('OFFICES WITH NO  VALID ID should return  status 400', (done) => {
     officeId = 5;
     request
       .get(`/api/v1/offices/${officeId}`)
-      .expect(404)
+      .expect(400)
       .expect('Content-Type', 'application/json; charset=utf-8')
       .end((err, res) => {
         expect(res.body).deep.equal({
-          status: 404,
+          status: 400,
           error: 'The office with given id was not found',
         });
         if (err) done(err);

@@ -29,16 +29,16 @@ class UserController {
     db.query('SELECT * FROM users WHERE email = $1', [email])
       .then((result) => {
         if (result.rows[0]) {
-          return res.status(409).json({
-            status: 409,
+          return res.status(400).json({
+            status: 400,
             error: 'user with this email already exist',
           });
         }
         db.query('SELECT * FROM users WHERE phoneNumber = $1', [phonenumber])
           .then((found) => {
             if (found.rows[0]) {
-              return res.status(409).json({
-                status: 409,
+              return res.status(400).json({
+                status: 400,
                 error: 'user with this phonenumber number already exist',
               });
             }
@@ -88,15 +88,15 @@ class UserController {
     db.query('SELECT * FROM users WHERE email = $1', [email])
       .then((user) => {
         if (!user.rows[0]) {
-          return res.status(401).json({
-            status: 401,
+          return res.status(400).json({
+            status: 400,
             error: 'You have entered an invalid email or password',
           });
         }
         const allowEntry = bcrypt.compareSync(password, user.rows[0].password);
         if (!allowEntry) {
-          return res.status(401).json({
-            status: 401,
+          return res.status(400).json({
+            status: 400,
             error: 'You have entered an invalid email or password',
           });
         }

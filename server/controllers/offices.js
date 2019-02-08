@@ -18,8 +18,8 @@ class OfficeController {
     return db.query('SELECT * FROM office WHERE officeName = $1', [officeName])
       .then((result) => {
         if (result.rows[0]) {
-          return res.status(409).json({
-            status: 409,
+          return res.status(400).json({
+            status: 400,
             error: 'office with this name already exist',
           });
         }
@@ -93,8 +93,8 @@ class OfficeController {
     db.query('SELECT * FROM OFFICE WHERE ID=$1', [id])
       .then((office) => {
         if (!office.rows[0]) {
-          res.status(404).send({
-            status: 404,
+          res.status(400).send({
+            status: 400,
             error: 'The office with given id was not found',
           });
           return;

@@ -43,6 +43,9 @@ const verifyToken = (req, res, next) => {
 
   try {
     decoded = jwt.verify(token, process.env.SECRET_KEY);
+    req.userData = decoded;
+    req.userId = decoded.id;
+    req.isAdmin = decoded.isAdmin;
   } catch (err) {
     if (err.name === 'TokenExpiredError') {
       const error = Error('Expired user authorization token');
@@ -70,9 +73,6 @@ const verifyToken = (req, res, next) => {
           error: 'Invalid user authorization token',
         });
       }
-      req.userData = decoded;
-      req.userId = decoded.id;
-      req.isAdmin = decoded.isAdmin;
       return next();
     });
 };

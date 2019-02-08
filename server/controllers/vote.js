@@ -1,34 +1,27 @@
 import db from '../db';
 
 /** user controller class */
-class CandidateController {
+class VoteController {
 /**
- * @function enrollCandidate
- * @memberof CandidateController
+ * @function createVote
+ * @memberof VoteController
  * @static
  */
-  static enrollCandidate(req, res) {
-    const { id } = req.params;
-    const candidate = Number(id);
-    if (!(/^[\d]+$/.test(candidate))) {
-      res.status(400).send({
-        status: 400,
-        error: 'Enter the correct user parameter',
-      });
-      return;
-    }
-    let { office, party } = req.body;
+  static createVote(req, res) {
+    const voter = req.userId;
+    console.log(req.userId);
+    let { office, candidate } = req.body;
     office = office ? office.toString().trim() : office;
-    party = party ? party.toString().trim() : party;
-    party = Number(party);
+    candidate = candidate ? candidate.toString().trim() : candidate;
     office = Number(office);
+    candidate = Number(candidate);
 
-    db.query('SELECT office FROM CANDIDATES WHERE candidate=$1 AND office=$2', [candidate, office])
-      .then((candidatesData) => {
-        if (candidatesData.rows[0]) {
+    db.query('SELECT office FROM VOTE WHERE createdBy=$1 AND office=$2', [voter, office])
+      .then((voteData) => {
+        if (voteData.rows[0]) {
           return res.status(400).send({
             status: 400,
-            error: 'The candidate with given id has been enroll for this office',
+            error: 'The voter with given id has voted a candidate for this office',
           });
         }
         db.query('SELECT * FROM users WHERE id=$1', [candidate])
@@ -47,27 +40,27 @@ class CandidateController {
                     error: 'The office does not exist',
                   });
                 }
-                db.query('SELECT * FROM party WHERE id=$1', [party])
-                  .then((partyData) => {
-                    if (!partyData.rows[0]) {
+                db.query('SELECT * FROM CANDIDATES WHERE candidate=$1', [candidate])
+                  .then((candidateData) => {
+                    if (!candidateData.rows[0]) {
                       return res.status(400).send({
                         status: 400,
-                        error: 'The party does not exist',
+                        error: 'The candidate has not been enrolled for an office',
                       });
                     }
-                    db.query('INSERT INTO candidates (office, party, candidate) VALUES ($1,$2,$3) RETURNING *', [office, party, candidate])
-                      .then((userValue) => {
-                        const data = userValue.rows[0];
+                    db.query('INSERT INTO vote (createdBy, office, candidate) VALUES ($1,$2,$3) RETURNING *', [voter, office, candidate])
+                      .then((voteValue) => {
+                        const data = voteValue.rows[0];
                         return res.status(200).send({
                           status: 201,
                           data,
-                          message: 'Candidate enroll',
+                          message: 'Vote cast',
                         });
                       })
                       .catch((err) => {
                         return res.status(500).json({
                           status: 500,
-                          error: 'unable to enroll candidate',
+                          error: 'unable to create vote',
                           err: err.message,
                         });
                       });
@@ -78,10 +71,10 @@ class CandidateController {
       .catch((err) => {
         return res.status(500).json({
           status: 500,
-          error: 'unable to fetch candidate',
+          error: 'unable to fetch voter',
           err: err.message,
         });
       });
   }
 }
-export default CandidateController;
+export default VoteController;
