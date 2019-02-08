@@ -99,7 +99,7 @@ class PartyController {
   static getParty(req, res) {
     let { id } = req.params;
     id = Number(id);
-    if (isNaN(id)) {
+    if (!(/^[\d]+$/.test(id))) {
       res.status(400).send({
         status: 400,
         error: 'Enter the correct party parameter',
@@ -138,11 +138,12 @@ class PartyController {
    */
   static updateParty(req, res) {
     const { id } = req.params;
-    if (isNaN(id)) {
-      return res.status(400).send({
+    if (!(/^[\d]+$/.test(id))) {
+      res.status(400).send({
         status: 400,
         error: 'Enter the correct party parameter',
       });
+      return;
     }
     const partyId = Number(id);
     let { partyName, partyDetail } = req.body;
@@ -190,11 +191,12 @@ class PartyController {
    */
   static deleteParty(req, res) {
     const { id } = req.params;
-    if (isNaN(id)) {
-      return res.status(400).send({
+    if (!(/^[\d]+$/.test(id))) {
+      res.status(400).send({
         status: 400,
         error: 'Enter the correct party parameter',
       });
+      return;
     }
     const partyId = Number(id);
     return db.query('SELECT * FROM PARTY WHERE ID=$1', [id])

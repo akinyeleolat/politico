@@ -62,9 +62,9 @@ const verifyToken = (req, res, next) => {
     return next(error);
   }
 
-  return db.users.findById(decoded.id)
+  return db.query('SELECT * FROM USERS WHERE ID=$1', [decoded.id])
     .then((user) => {
-      if (!user) {
+      if (!user.rows[0]) {
         return res.status(401).json({
           status: 401,
           error: 'Invalid user authorization token',
