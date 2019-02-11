@@ -166,7 +166,7 @@ header a:hover{
     font-weight: bold;
 }
 header li{
-    /* float:left; */
+   
     display:inline;
     padding: 0 20px 0 20px;
 }
@@ -366,8 +366,6 @@ header .highlight,section .highlight, header .current a{
 #officeList button{
     cursor:pointer;
 }
-
-
 
 .modal {
     display: none;
