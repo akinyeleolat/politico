@@ -115,8 +115,8 @@ ul{
     {
     width:200px;
     height:40px;
+    margin-bottom: 15px;
     padding-left:5px;
-   
     border: 1px solid #e8491d;
     border-radius: 4px;
     box-sizing: border-box;
@@ -166,7 +166,7 @@ header a:hover{
     font-weight: bold;
 }
 header li{
-    float:left;
+   
     display:inline;
     padding: 0 20px 0 20px;
 }
@@ -366,8 +366,6 @@ header .highlight,section .highlight, header .current a{
 #officeList button{
     cursor:pointer;
 }
-
-
 
 .modal {
     display: none;
@@ -792,9 +790,6 @@ footer{
   
 
 @media(max-width:1024px){
-    header #branding,
-    header nav,
-    header nav li,
     #newsletter h1,
     #newsletter form,
     #boxes .box,
