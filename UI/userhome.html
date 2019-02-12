@@ -15,7 +15,7 @@
                 <div class="container">
                     <nav>
                         <ul>
-                            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a href="index.html" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                             </ul>
                     </nav>
                     <div id="branding">
@@ -26,8 +26,9 @@
             </header>
   <main class="content">
         <section id="newsletter">
-                <div class="container">                       
-                        <a href="profile.html"><button class="openbtn" style="float:right;">☰ <i class="fas fa-users"></i> Welcome, Oluwatosin </a>
+                <div class="container">
+                        <div style="float:right;" id="userImage"></div>                   
+                        <a href="profile.html"><button class="openbtn" style="float:left;">☰ <i class="fas fa-users"></i> Welcome, <div id="username"></div> </a>
                 </div>
               </section>
   <div>
@@ -92,6 +93,5 @@
         <p>Politico, Copyright &copy; 2019</p>
     </footer>
 </body>
-
 <script src="./js/userpage.js"></script>
 </html>

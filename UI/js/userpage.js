@@ -86,3 +86,30 @@ voteCandidate.onclick = () =>{
     <p><button class="button_1" style="float:right"><i class="fas fa-check-circle"></i></button></p>                           
 </div>`
 }
+const token = localStorage.getItem('token')
+window.onload = () => {
+  if (!token) {
+    window.location.replace('./login.html')
+  }
+  else {
+    fetchUserProfile()
+  }
+}
+
+/* fetch user details from local storage */
+const fetchUserProfile = () => {
+    const userprofile = localStorage.getItem('users');
+    user = JSON.parse(userprofile);
+    document.getElementById('username').innerHTML = `${user.lastname.toUpperCase()}, ${user.firstname.toUpperCase()}`;
+    document.getElementById('userImage').innerHTML = `<img src="${user.passporturl}" width="50px"
+    height="50px">`
+}
+/* log out user*/
+const logout = document.getElementById('logout');
+const logoutUser = (e) => {
+    const loginPage = './login.html'
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace(`${loginPage}`);
+};
+logout.addEventListener("click", logoutUser);
