@@ -1,6 +1,4 @@
-
-
-
+/* Drop down button*/
  var dropdown = document.getElementsByClassName("dropdown-btn");
  var i;
  
@@ -35,15 +33,45 @@ var deleteParty = document.getElementById("partyName");
 
 var span = document.getElementsByClassName("close")[0];
 
-
+let  imageLink;
 btn.onclick = function() {
   modal.style.display = "block";
   headerTitle.innerHTML = "CREATE NEW PARTY";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">Upload Logo</button></a></p>
-  <p><input type="text" id="pName" placeholder="Party Name"></p>
-  <p><input type="text" id="pDetails" placeholder="Party Detail"></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address"></textarea></p>
-  <p><input type="submit" id="formBtn" value="Create Party"  class="button_1"></p>`
+  officeForm.innerHTML =`<form id="createParty"><p style="text-align: right"><a href="#" id="upload_widget_opener"><button class="button_3">Upload Party Logo</button></a></p>
+  <p><input type="text" id="pName" placeholder="Party Name" required></p>
+  <p><input type="text" id="pDetails" placeholder="Party Detail" required></p>
+  <p><textarea  id="hqAddress" placeholder="Headquarter Address" required></textarea></p>
+  <p><input type="submit" id="formBtn" value="Create Party"  class="button_1"></p></form>
+  <div id="responseMsg"></div>`
+  /* Image upload*/
+  /*handle image upload*/
+   const widgetOpener = document.getElementById('upload_widget_opener');
+   cloudinary.applyUploadWidget(widgetOpener,{ 
+  cloudName: 'akinyeleolat',
+  uploadPreset: 'politico',
+  cropping: true,
+  folder: 'politico'
+  }, (error, result) => {
+  if (result && result.event === 'success') {
+    /*Get image Url*/
+    let imageLink = result.info.url
+    return imageLink
+  }
+})
+  /* Event Listeners*/
+ let responseMsg = document.getElementById('responseMsg');
+ let logoUrl = imageLink;
+ let partyName = document.getElementById('pName').value.trim();
+ let partyDetail = document.getElementById('pDetails').value.trim();
+ let hqAddress = document.getElementById('hqAddress').value.trim();
+ const createParty = document.getElementById('createParty');
+ createParty.addEventListener('submit', addParty,false)
+ createParty.partyBody = JSON.stringify({
+  partyName,
+  partyDetail,
+  hqAddress,
+  logoUrl,
+});
 }
 
 editBtn.onclick = function(){
@@ -51,22 +79,23 @@ editBtn.onclick = function(){
   headerTitle.innerHTML = "EDIT PARTY";
   pName = "NYP";
   hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
+  officeForm.innerHTML =`
+  <form><p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
   <p><input type="text" id="pName" value=${pName} placeholder="Party Name"></p>
   <p><textarea  id="hqAddress" placeholder="Headquarter Address"> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p>`;
+  <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p></form>`;
 }
 officeBtn.onclick = function() {
   modal.style.display = "block";
   headerTitle.innerHTML  = "CREATE NEW OFFICE";
   officeForm.innerHTML = `
-  <p><input type="text" id="officeName" placeholder="Office Name"></p>
+  <form><p><input type="text" id="officeName" placeholder="Office Name"></p>
   <p><select name="office-type">
       <option value="Federal">Federal</option>
       <option value="State">State</option>
       <option value="LGA">Local Government</option>
     </select></p>
-  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>`
+  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p></form>`
 }
 deleteParty.onclick = function() {
   modal.style.display = "block";
@@ -74,9 +103,10 @@ deleteParty.onclick = function() {
   pName = "NYP";
   hqAddress = "IKEJA,LAGOS";
   officeForm.innerHTML =`
+  <form>
   <p><input type="text" id="pName" value=${pName} placeholder="Party Name" readonly></p>
   <p><textarea  id="hqAddress" placeholder="Headquarter Address" readonly> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p>`;
+  <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p></form>`;
 }
 
 span.onclick = function() {
@@ -108,8 +138,6 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-
-
 function openNav() {
   document.getElementById("mySidepanel").style.width = "250px";
 }
@@ -122,9 +150,7 @@ var deleteParty = document.getElementById("partyName");
 
 var partyMsg = document.getElementById("partyMsg");
 
-function deletePartyData() {
-  alert('party Deleted');
-} 
+/* Onload function */
 const token = localStorage.getItem('token')
 window.onload = () => {
   if (!token) {
@@ -140,8 +166,6 @@ const fetchUserProfile = () => {
     const userprofile = localStorage.getItem('users');
     user = JSON.parse(userprofile);
     document.getElementById('username').innerHTML = `${user.lastname.toUpperCase()}, ${user.firstname.toUpperCase()}`;
-    document.getElementById('userImage').innerHTML = `<img src="${user.passporturl}" width="50px"
-    height="50px">`
 }
 /* log out user*/
 const logout = document.getElementById('logout');
@@ -151,4 +175,48 @@ const logoutUser = (e) => {
     localStorage.clear();
     window.location.replace(`${loginPage}`);
 };
-logout.addEventListener("click", logoutUser);
+logout.addEventListener('click', logoutUser);
+
+/* fetech Create Party */
+const createParty = (url, databody) => {
+  const token = localStorage.getItem('token');
+fetch(url, {
+  method:'POST',
+  headers:{
+    'Accept':'application/json',
+    'Authorization':token,
+    'token': token,
+    'Content-Type':'application/json'
+  },
+  body:databody
+})
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.status === 200) {
+      const partyName = data.data.partyName;
+      responseMsg.innerHTML = `${partyName} created`;
+    }
+    else {
+      const error = data.error;
+      let errorMsg = '';
+      if(error){
+          for(let i=0; i<error.length;i++){
+            errorMsg +=`<br>*${error[i]}`;
+          }
+      }
+      responseMsg.innerHTML = errorMsg;
+    }
+  })
+  .catch((error) => {
+    responseMsg.innerHTML = error
+  });
+};
+/* Add party */
+const addParty = (event) =>{
+  event.preventDefault();
+  const host = 'https://ngpolitico.herokuapp.com';
+  const url = `${host}/api/v1/parties`;
+  responseMsg.innerHTML = 'party created';
+  databody = event.target.partyBody;
+  console.log(databody);
+}
