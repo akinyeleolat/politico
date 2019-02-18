@@ -34,7 +34,10 @@ var deleteParty = document.getElementById("partyName");
 var span = document.getElementsByClassName("close")[0];
 
 let  imageLink;
+let databody;
+let logoUrl;
 btn.onclick = function() {
+  let logoUrl;
   modal.style.display = "block";
   headerTitle.innerHTML = "CREATE NEW PARTY";
   officeForm.innerHTML =`<form id="createParty"><p style="text-align: right"><a href="#" id="upload_widget_opener"><button class="button_3">Upload Party Logo</button></a></p>
@@ -54,26 +57,14 @@ btn.onclick = function() {
   }, (error, result) => {
   if (result && result.event === 'success') {
     /*Get image Url*/
-    let imageLink = result.info.url
-    return imageLink
+    let imageLink = result.info.url;
+    localStorage.setItem('logoUrl', imageLink);
   }
 })
-  /* Event Listeners*/
- let responseMsg = document.getElementById('responseMsg');
- let logoUrl = imageLink;
- let partyName = document.getElementById('pName').value.trim();
- let partyDetail = document.getElementById('pDetails').value.trim();
- let hqAddress = document.getElementById('hqAddress').value.trim();
- const createParty = document.getElementById('createParty');
- createParty.addEventListener('submit', addParty,false)
- createParty.partyBody = JSON.stringify({
-  partyName,
-  partyDetail,
-  hqAddress,
-  logoUrl,
-});
+const createParty = document.getElementById('createParty');
+ createParty.addEventListener('submit', addParty);
 }
-
+/* edit button function */
 editBtn.onclick = function(){
   modal.style.display = "block";
   headerTitle.innerHTML = "EDIT PARTY";
@@ -216,7 +207,17 @@ const addParty = (event) =>{
   event.preventDefault();
   const host = 'https://ngpolitico.herokuapp.com';
   const url = `${host}/api/v1/parties`;
-  responseMsg.innerHTML = 'party created';
-  databody = event.target.partyBody;
-  console.log(databody);
+   /* Event Listeners*/
+ let responseMsg = document.getElementById('responseMsg');
+ let logoUrl = localStorage.getItem('logoUrl');
+ let partyName = document.getElementById('pName').value.trim();
+ let partyDetail = document.getElementById('pDetails').value.trim();
+ let hqAddress = document.getElementById('hqAddress').value.trim();
+ databody = JSON.stringify({
+  partyName,
+  partyDetail,
+  hqAddress,
+  logoUrl,
+});
+createParty(url,databody);
 }
