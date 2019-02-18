@@ -102,6 +102,7 @@ deleteParty.onclick = function() {
 
 span.onclick = function() {
   modal.style.display = "none";
+  location.reload(true);
   officeForm.innerHTML = null;
 }
 
