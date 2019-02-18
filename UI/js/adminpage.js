@@ -191,9 +191,7 @@ fetch(url, {
       const error = data.error;
       let errorMsg = '';
       if(error){
-          for(let i=0; i<error.length;i++){
-            errorMsg +=`<br>*${error[i]}`;
-          }
+            errorMsg = error;
       }
       responseMsg.innerHTML = errorMsg;
     }
