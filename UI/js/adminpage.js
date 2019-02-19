@@ -80,13 +80,18 @@ officeBtn.onclick = function() {
   modal.style.display = "block";
   headerTitle.innerHTML  = "CREATE NEW OFFICE";
   officeForm.innerHTML = `
-  <form><p><input type="text" id="officeName" placeholder="Office Name"></p>
-  <p><select name="office-type">
+  <form id="createOffice"><p><input type="text" id="officeName" placeholder="Office Name" required></p>
+  <p><select name="office-type" id="officeType">
       <option value="Federal">Federal</option>
       <option value="State">State</option>
       <option value="LGA">Local Government</option>
     </select></p>
-  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p></form>`
+  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>
+  </form>
+  <div id="responseOfficeMsg"></div>
+  `
+  const createOffice = document.getElementById('createOffice');
+ createOffice.addEventListener('submit', addOffice);
 }
 deleteParty.onclick = function() {
   modal.style.display = "block";
@@ -169,56 +174,4 @@ const logoutUser = (e) => {
     window.location.replace(`${loginPage}`);
 };
 logout.addEventListener('click', logoutUser);
-
-/* fetech Create Party */
-const createParty = (url, databody) => {
-  const token = localStorage.getItem('token');
-fetch(url, {
-  method:'POST',
-  headers:{
-    'Accept':'application/json',
-    'Authorization':token,
-    'token': token,
-    'Content-Type':'application/json'
-  },
-  body:databody
-})
-  .then((res) => res.json())
-  .then((data) => {
-    if (data.status === 200) {
-      const partyName = data.data.partyName;
-      responseMsg.innerHTML = `${partyName} created`;
-    }
-    else {
-      const error = data.error;
-      let errorMsg = '';
-      if(error){
-            errorMsg = error;
-      }
-      responseMsg.innerHTML = errorMsg;
-    }
-  })
-  .catch((error) => {
-    responseMsg.innerHTML = error
-  });
-};
-/* Add party */
-const addParty = (event) =>{
-  event.preventDefault();
-  const host = 'https://ngpolitico.herokuapp.com';
-  const url = `${host}/api/v1/parties`;
-   /* Event Listeners*/
- let responseMsg = document.getElementById('responseMsg');
- let logoUrl = localStorage.getItem('logoUrl');
- let partyName = document.getElementById('pName').value.trim();
- let partyDetail = document.getElementById('pDetails').value.trim();
- let hqAddress = document.getElementById('hqAddress').value.trim();
- databody = JSON.stringify({
-  partyName,
-  partyDetail,
-  hqAddress,
-  logoUrl,
-});
-createParty(url,databody);
-}
 
