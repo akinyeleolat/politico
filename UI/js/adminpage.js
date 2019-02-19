@@ -156,6 +156,7 @@ window.onload = () => {
   else {
     fetchUserProfile();
     fetchAllParty();
+    fetchAllOffice();
   }
 }
 

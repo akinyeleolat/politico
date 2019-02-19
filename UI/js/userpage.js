@@ -94,6 +94,7 @@ window.onload = () => {
   else {
     fetchUserProfile();
     fetchAllParty();
+    fetchOffice();
   }
 }
 
