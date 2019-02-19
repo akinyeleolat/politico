@@ -92,7 +92,8 @@ window.onload = () => {
     window.location.replace('./login.html')
   }
   else {
-    fetchUserProfile()
+    fetchUserProfile();
+    fetchAllParty();
   }
 }
 
