@@ -26,9 +26,8 @@ var officeForm = document.getElementById("getForm");
 
 var btn = document.getElementById("myBtn");
 var btn2 = document.getElementById("myBtn2");
-var editBtn = document.getElementById("editParty");
 var officeBtn = document.getElementById("officeBtn");
-var deleteParty = document.getElementById("partyName");
+
 
 
 var span = document.getElementsByClassName("close")[0];
@@ -65,17 +64,8 @@ const createParty = document.getElementById('createParty');
  createParty.addEventListener('submit', addParty);
 }
 /* edit button function */
-editBtn.onclick = function(){
-  modal.style.display = "block";
-  headerTitle.innerHTML = "EDIT PARTY";
-  pName = "NYP";
-  hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`
-  <form><p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
-  <p><input type="text" id="pName" value=${pName} placeholder="Party Name"></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address"> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p></form>`;
-}
+
+/* Create New Office*/
 officeBtn.onclick = function() {
   modal.style.display = "block";
   headerTitle.innerHTML  = "CREATE NEW OFFICE";
@@ -84,7 +74,7 @@ officeBtn.onclick = function() {
   <p><select name="office-type" id="officeType">
       <option value="Federal">Federal</option>
       <option value="State">State</option>
-      <option value="LGA">Local Government</option>
+      <option value="Local Government">Local Government</option>
     </select></p>
   <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>
   </form>
@@ -93,21 +83,11 @@ officeBtn.onclick = function() {
   const createOffice = document.getElementById('createOffice');
  createOffice.addEventListener('submit', addOffice);
 }
-deleteParty.onclick = function() {
-  modal.style.display = "block";
-  headerTitle.innerHTML = "DELETE PARTY ?";
-  pName = "NYP";
-  hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`
-  <form>
-  <p><input type="text" id="pName" value=${pName} placeholder="Party Name" readonly></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address" readonly> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p></form>`;
-}
+
 
 span.onclick = function() {
   modal.style.display = "none";
-  location.reload(true);
+  location.reload();
   officeForm.innerHTML = null;
 }
 
@@ -115,6 +95,8 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    location.reload();
+    officeForm.innerHTML = null;
   }
 }
 

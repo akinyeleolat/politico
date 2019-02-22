@@ -17,23 +17,17 @@ const fetchAllParty = () => {
     .then((data) => {
       if (data.status === 200) { 
         viewParty = data.data;
-        let outputParty = `<h1><i class="fas fa-users"></i> Parties</h1>
-        <div class="card">
-        <img src="./img/userprofile.jpg">
-        <p>NYP</p>
-        <button class="button_1"  style="float:left" id="editParty"><i class="far fa-edit"></i></button>
-        <button class="button_3" style="float:right" id="partyName"><i class="fas fa-trash-alt"></i></button>
-        </div>`;
+        let outputParty = `<h1><i class="fas fa-users"></i> Parties</h1>`;
         viewParty.forEach((party) => {
             outputParty +=`<div class="card" id="${party.id}">
             <img src="${party.logourl}">
-            <p>${party.partyname.toUpperCase()}</p>
-            <p>${party.partydetail.toUpperCase()}</p>
+            <p id="partyName${party.id}">${party.partyname.toUpperCase()}</p>
+            <p id="partyDetail${party.id}">${party.partydetail.toUpperCase()}</p>
             <p>${party.hqaddress.toUpperCase()}</p>
-            <button class="button_1"  style="float:left" id="editParty${party.id}"><i class="far fa-edit"></i></button>
-            <button class="button_3" style="float:right" id="partyName${party.id}"><i class="fas fa-trash-alt"></i></button>
+            <button class="updateBtn"  style="float:left" id="${party.id}"><i class="far fa-edit"></i></button>
+            <button class="deleteBtn" style="float:right" id="${party.id}"><i class="fas fa-trash-alt"></i></button>
             </div>`
-        });
+        })
         partyData.innerHTML = outputParty;
       }
       else{

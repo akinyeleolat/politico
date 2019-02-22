@@ -16,6 +16,7 @@ const createParty = (url, databody) => {
       if (data.status === 201) {
         const partyName = data.data[0].party.partyName;
         responseMsg.innerHTML = `${partyName} created`;
+        location.reload(true);
       }
       else {
         const error = data.error;
