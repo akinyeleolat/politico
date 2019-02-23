@@ -246,7 +246,6 @@ header .highlight,section .highlight, header .current a{
     padding:10px;
     margin-right: 10px;
     margin-left: 10px;
-   
     border:1px solid #ccc;
   }
   
@@ -268,7 +267,6 @@ header .highlight,section .highlight, header .current a{
   
   #partyList .container{
     padding: 2px 16px;
-   
   }
   #partyList .card h3{
     text-align: center;

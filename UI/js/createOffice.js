@@ -18,7 +18,6 @@ const createOffice = (url, databody) => {
       if (data.status === 201) {
         const officeName = data.data[0].office.officeName;
         responseMsg.innerHTML = `${officeName} created`;
-        location.reload(true);
       }
       else {
         const error = data.error;

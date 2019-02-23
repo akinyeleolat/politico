@@ -1,37 +1,36 @@
 /* Get the party Id and party details */
-let partyList = document.querySelector('#partyList');
+partyList = document.querySelector('#partyList');
 document.addEventListener('click', e => {
-    if ((e.target.matches('button')) && (e.target.classList=='updateBtn') ) {
+    if ((e.target.matches('button')) && (e.target.classList=='deleteBtn') ) {
       partyId = e.target.id;
       const partyName = document.getElementById(`partyName${partyId}`).innerHTML;
       const partyDetail = document.getElementById(`partyDetail${partyId}`).innerHTML;
      modal.style.display = "block";
-     headerTitle.innerHTML = "EDIT PARTY";
+     headerTitle.innerHTML = "DELETE PARTY";
      officeForm.innerHTML =`
-     <form id="updateParty">
-     <p><input type="text" id="pName"  required></p>
-     <p><input type="text" id="pDetails"  required></p>
-     <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p></form>
+     <form id="deleteParty">
+     <p><input type="text" id="pName"  readonly></p>
+     <p><input type="text" id="pDetails"  readonly></p>
+     <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p></form>
      <div id="responseEditMsg"></div>`;
      document.getElementById('pName').value = partyName;
      document.getElementById('pDetails').value = partyDetail;
-    const updateParty = document.getElementById('updateParty');
-    updateParty.addEventListener('submit', updatePartyName);
-    updateParty.partyId = partyId;
+    const deleteParty = document.getElementById('deleteParty');
+    deleteParty.addEventListener('submit', deletePartyData);
+    deleteParty.partyId = partyId;
     }
   });
   /* fetch edit Party */
-const editParty = (url, databody,responseMsg) => {
+const deletePartyDetail = (url, responseMsg) => {
   const token = localStorage.getItem('token');
 fetch(url, {
-  method:'PATCH',
+  method:'DELETE',
   headers:{
     'Accept':'application/json',
     'Authorization':token,
     'token': token,
     'Content-Type':'application/json'
-  },
-  body:databody
+  }
 })
   .then((res) => res.json())
   .then((data) => {
@@ -52,19 +51,14 @@ fetch(url, {
     responseMsg.innerHTML = error;
   });
 };
-/* update party name*/
-  const updatePartyName = (event) => {
+/* Delete party*/
+  const deletePartyData = (event) => {
     event.preventDefault();
     let partyId = event.target.partyId;
     let responseMsg =  document.getElementById('responseEditMsg');
-    let newPartyName = document.getElementById('pName').value.trim();
-    let newPartyDetail = document.getElementById('pDetails').value.trim();
-    const databody = JSON.stringify({
-      partyName: newPartyName,
-      partyDetail: newPartyDetail,
-    })
+    
     const host = 'https://ngpolitico.herokuapp.com';
-    const url = `${host}/api/v1/parties/${partyId}/name`;
-    editParty(url,databody,responseMsg);
+    const url = `${host}/api/v1/parties/${partyId}`;
+    deletePartyDetail(url,responseMsg);
   }
 
