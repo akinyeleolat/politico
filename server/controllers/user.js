@@ -134,7 +134,7 @@ class UserController {
  * @static
  */
   static getAllUsers(req, res) {
-    db.query('SELECT lastname,firstname,othername,email,phonenumber,passporturl,isadmin from  users WHERE isadmin=false')
+    db.query('SELECT id,lastname,firstname,othername,email,phonenumber,passporturl,isadmin from  users WHERE isadmin=false')
       .then((userData) => {
         const data = userData.rows;
         return res.status(200).send({
