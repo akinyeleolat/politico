@@ -1,4 +1,4 @@
-/* fetch all aprty*/
+/* fetch all office*/
 let officeData = document.getElementById('officeList') 
 const fetchAllOffice = () => {
     const host = 'https://ngpolitico.herokuapp.com';
@@ -49,3 +49,4 @@ const fetchAllOffice = () => {
         officeData.innerHTML = error;
     })
   }
+  

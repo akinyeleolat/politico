@@ -139,6 +139,7 @@ window.onload = () => {
     fetchUserProfile();
     fetchAllParty();
     fetchAllOffice();
+    fetchAuthUser();
   }
 }
 
