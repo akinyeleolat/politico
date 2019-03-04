@@ -365,7 +365,7 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
       });
   });
   it('PARTY WITH VALID ID should return  status 200', (done) => {
-    partyId = 1;
+    partyId = 2;
     request
       .delete(`/api/v1/parties/${partyId}`)
       .set('token', token)
@@ -383,7 +383,7 @@ describe('DELETE PARTIES /api/v1/parties/:id', () => {
       .end(done);
   });
   it('should return a JSON', (done) => {
-    partyId = 1;
+    partyId = 2;
     request
       .delete(`/api/v1/parties/${partyId}`)
       .set('token', token)

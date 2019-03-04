@@ -13,7 +13,7 @@ router.get('/parties', PartyController.getAllParty);
 router.get('/offices', OfficeController.getAllOffice);
 router.get('/parties/:id', PartyController.getParty);
 router.get('/offices/:id', OfficeController.getOffice);
-router.get('/office/:id/candidate', CandidateController.viewCandidate);
+router.get('/office/:id/candidate', CandidateController.viewApprovedCandidate);
 
 /** Authenticated Admin route */
 router.get('/auth/users', middlewares.verifyAdminToken, UserController.getAllUsers);
@@ -21,8 +21,10 @@ router.post('/parties/', middlewares.verifyAdminToken, middlewares.validateCreat
 router.patch('/parties/:id/name', middlewares.verifyAdminToken, middlewares.validateUpdateParty, PartyController.updateParty);
 router.delete('/parties/:id', middlewares.verifyAdminToken, PartyController.deleteParty);
 router.post('/offices/', middlewares.verifyAdminToken, middlewares.validateOfficeInput, OfficeController.createOffice);
-router.post('/office/:id/register', middlewares.verifyAdminToken, middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
+router.patch('/office/:candidateId/register/:officeId', middlewares.verifyAdminToken, middlewares.validateCandidateApproval, CandidateController.approveCandidate);
+router.get('/office/:id/interestedcandidate', middlewares.verifyAdminToken,CandidateController.viewInterestedCandidate);
 /** Authenticated User route */
+router.post('/candidate/', middlewares.verifyToken, middlewares.validateCreateCandidate, CandidateController.enrollCandidate);
 router.post('/votes', middlewares.verifyToken, middlewares.validateCreateVote, VoteController.createVote);
 router.get('/office/:id/result', middlewares.verifyToken, VoteController.getVoteResult);
 

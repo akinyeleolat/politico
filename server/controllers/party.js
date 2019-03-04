@@ -68,7 +68,7 @@ class PartyController {
   }
 
   /**
- * @function getAllParty
+ * @function getAllParty Get all registerd party
  * @memberof PartyController
  * @static
  */
@@ -92,7 +92,7 @@ class PartyController {
   }
 
   /**
- * @function getParty
+ * @function getParty Get specific party details
  * @memberof PartyController
  * @static
  */

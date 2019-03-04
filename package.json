@@ -13,6 +13,7 @@
     "lint": "eslint ./ --fix",
     "build": "babel src -d dist",
     "migrate": "babel-node server/db",
+    "reset":"babel-node server/db/cleardb.js && babel-node server/db",
     "postinstall": "npm install babel-cli babel-preset-env babel-register"
   },
   "repository": {

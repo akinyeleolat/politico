@@ -6,7 +6,7 @@ import db from '../db';
 
 class UserController {
   /**
- * @function signup
+ * @function signup create users accounts
  * @memberof UserController
  * @static
  */
@@ -71,7 +71,7 @@ class UserController {
       });
   }
   /**
-* @function login
+* @function login handle users login
 * @memberof UserController
 *
 * @param {Object} req - this is a request object that contains whatever is requested for
@@ -129,7 +129,7 @@ class UserController {
   }
 
   /**
- * @function getAllUsers
+ * @function getAllUsers Get all authenticated users
  * @memberof UserController
  * @static
  */

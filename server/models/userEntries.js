@@ -21,7 +21,7 @@ export const signUpData = {
   passporturl,
 };
 /**
-* This is a valid user data
+* This is a valid admin data
 * @exports signUpAdmin
 * */
 export const signUpAdmin = {
