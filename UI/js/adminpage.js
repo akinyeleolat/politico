@@ -1,6 +1,4 @@
-
-
-
+/* Drop down button*/
  var dropdown = document.getElementsByClassName("dropdown-btn");
  var i;
  
@@ -28,59 +26,68 @@ var officeForm = document.getElementById("getForm");
 
 var btn = document.getElementById("myBtn");
 var btn2 = document.getElementById("myBtn2");
-var editBtn = document.getElementById("editParty");
 var officeBtn = document.getElementById("officeBtn");
-var deleteParty = document.getElementById("partyName");
+
 
 
 var span = document.getElementsByClassName("close")[0];
 
-
+let  imageLink;
+let databody;
+let logoUrl;
 btn.onclick = function() {
+  let logoUrl;
   modal.style.display = "block";
   headerTitle.innerHTML = "CREATE NEW PARTY";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">Upload Logo</button></a></p>
-  <p><input type="text" id="pName" placeholder="Party Name"></p>
-  <p><input type="text" id="pDetails" placeholder="Party Detail"></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address"></textarea></p>
-  <p><input type="submit" id="formBtn" value="Create Party"  class="button_1"></p>`
+  officeForm.innerHTML =`<form id="createParty"><p style="text-align: right"><a href="#" id="upload_widget_opener"><button class="button_3">Upload Party Logo</button></a></p>
+  <p><input type="text" id="pName" placeholder="Party Name" required></p>
+  <p><input type="text" id="pDetails" placeholder="Party Detail" required></p>
+  <p><textarea  id="hqAddress" placeholder="Headquarter Address" required></textarea></p>
+  <p><input type="submit" id="formBtn" value="Create Party"  class="button_1"></p></form>
+  <div id="responseMsg"></div>`
+  /* Image upload*/
+  /*handle image upload*/
+   const widgetOpener = document.getElementById('upload_widget_opener');
+   cloudinary.applyUploadWidget(widgetOpener,{ 
+  cloudName: 'akinyeleolat',
+  uploadPreset: 'politico',
+  cropping: true,
+  folder: 'politico'
+  }, (error, result) => {
+  if (result && result.event === 'success') {
+    /*Get image Url*/
+    let imageLink = result.info.url;
+    localStorage.setItem('logoUrl', imageLink);
+  }
+})
+const createParty = document.getElementById('createParty');
+ createParty.addEventListener('submit', addParty);
 }
+/* edit button function */
 
-editBtn.onclick = function(){
-  modal.style.display = "block";
-  headerTitle.innerHTML = "EDIT PARTY";
-  pName = "NYP";
-  hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`<p style="text-align: right"><a href="#"><button class="button_3">New Logo</button></a></p>
-  <p><input type="text" id="pName" value=${pName} placeholder="Party Name"></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address"> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Update Party"  class="button_1"></p>`;
-}
+/* Create New Office*/
 officeBtn.onclick = function() {
   modal.style.display = "block";
   headerTitle.innerHTML  = "CREATE NEW OFFICE";
   officeForm.innerHTML = `
-  <p><input type="text" id="officeName" placeholder="Office Name"></p>
-  <p><select name="office-type">
+  <form id="createOffice"><p><input type="text" id="officeName" placeholder="Office Name" required></p>
+  <p><select name="office-type" id="officeType">
       <option value="Federal">Federal</option>
       <option value="State">State</option>
-      <option value="LGA">Local Government</option>
+      <option value="Local Government">Local Government</option>
     </select></p>
-  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>`
+  <p><input type="submit" id="office-formBtn" value="Create Office" class="button_1"></p>
+  </form>
+  <div id="responseOfficeMsg"></div>
+  `
+  const createOffice = document.getElementById('createOffice');
+ createOffice.addEventListener('submit', addOffice);
 }
-deleteParty.onclick = function() {
-  modal.style.display = "block";
-  headerTitle.innerHTML = "DELETE PARTY ?";
-  pName = "NYP";
-  hqAddress = "IKEJA,LAGOS";
-  officeForm.innerHTML =`
-  <p><input type="text" id="pName" value=${pName} placeholder="Party Name" readonly></p>
-  <p><textarea  id="hqAddress" placeholder="Headquarter Address" readonly> ${hqAddress}</textarea></p>
-  <p><input type="submit" id="formBtn" value="Delete Party"  class="button_1"></p>`;
-}
+
 
 span.onclick = function() {
   modal.style.display = "none";
+  location.reload();
   officeForm.innerHTML = null;
 }
 
@@ -88,6 +95,8 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    location.reload();
+    officeForm.innerHTML = null;
   }
 }
 
@@ -108,8 +117,6 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-
-
 function openNav() {
   document.getElementById("mySidepanel").style.width = "250px";
 }
@@ -122,6 +129,33 @@ var deleteParty = document.getElementById("partyName");
 
 var partyMsg = document.getElementById("partyMsg");
 
-function deletePartyData() {
-  alert('party Deleted');
-} 
+/* Onload function */
+const token = localStorage.getItem('token')
+window.onload = () => {
+  if (!token) {
+    window.location.replace('./login.html')
+  }
+  else {
+    fetchUserProfile();
+    fetchAllParty();
+    fetchAllOffice();
+    fetchAuthUser();
+  }
+}
+
+/* fetch user details from local storage */
+const fetchUserProfile = () => {
+    const userprofile = localStorage.getItem('users');
+    user = JSON.parse(userprofile);
+    document.getElementById('username').innerHTML = `${user.lastname.toUpperCase()}, ${user.firstname.toUpperCase()}`;
+}
+/* log out user*/
+const logout = document.getElementById('logout');
+const logoutUser = (e) => {
+    const loginPage = './login.html'
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace(`${loginPage}`);
+};
+logout.addEventListener('click', logoutUser);
+

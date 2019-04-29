@@ -15,7 +15,7 @@
                 <div class="container">
                     <nav>
                         <ul>
-                            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a href="index.html" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                             </ul>
                     </nav>
                     <div id="branding">
@@ -26,18 +26,17 @@
             </header>
   <main class="content">
         <section id="newsletter">
-                <div class="container">                       
-                        <a href="profile.html"><button class="openbtn" style="float:right;">☰ <i class="fas fa-users"></i> Welcome, Oluwatosin </a>
+                <div class="container">
+                        <div style="float:right;" id="userImage"></div>                   
+                        <a href="profile.html"><button class="openbtn" style="float:left;">☰ <i class="fas fa-users"></i> Welcome, <div id="username"></div> </a>
                 </div>
               </section>
   <div>
       
     <div class="dashboardcontainer"> 
             <form style="float:right;" action="#">
-                    <select name="office-list" style="background:#fff">
-                            <option value="Federal">Presidency</option>
-                            <option value="State">Ikeja House of Representative</option>
-                            <option value="LGA">Agege Local Government Chairman</option>
+                    <select name="office-list" style="background:#fff" id="viewOffice">
+                            
                           </select>
                     <button  id="view_candidate" class="button_1">View Candidates</button>
                     <button id="vote_candidate" class="button_3">Vote Candidates</button>
@@ -53,37 +52,10 @@
             <form style="float:right;">
                   <input type="text" placeholder="Search" />
                   <button type="submit" class="button_1">Search</button>
+                  <a href="javascript:location.reload(true)" style="float:right"><button class="button_1">Refresh Page</button></a>
                 </form>
       <section id="partyList">     
-      <h1><i class="fas fa-users"></i> Parties</h1>
-      <div class="card">
-      <img src="./img/userprofile2.jpg">
-      <p>NYP</p>
-      </div>
-      <div class="card">
-      <img src="./img/userprofile2.jpg">
-      <p>NYP</p>
-      </div>
-      <div class="card">
-      <img src="./img/userprofile2.jpg">
-      <p>NYP</p>
-      </div>
-      <div class="card">
-      <img src="./img/userprofile.jpg">
-      <p>NYP</p>
-      </div>           
-      <div class="card">
-      <img src="./img/unnamed.png">
-      <p>NYP</p>
-      </div>
-      <div class="card">
-      <img src="./img/userprofile.jpg">
-      <p>NYP</p>
-      </div>
-      <div class="card">
-      <img src="./img/userprofile.jpg">
-      <p>NYP</p>                            
-      </div>
+      
       </section>
       </div>
  </div>
@@ -92,6 +64,7 @@
         <p>Politico, Copyright &copy; 2019</p>
     </footer>
 </body>
-
 <script src="./js/userpage.js"></script>
+<script src="./js/viewAllParty.js"></script>
+<script src="./js/fetchOffice.js"></script>
 </html>
