@@ -15,7 +15,6 @@ class UserController {
     let {
       firstname, lastname, othername, email, phonenumber, passporturl, password,
     } = req.body;
-    // let { password } = req.body;
     firstname = firstname ? firstname.toString().replace(/\s+/g, '') : firstname;
     lastname = lastname ? lastname.toString().replace(/\s+/g, '') : lastname;
     othername = othername ? othername.toString().replace(/\s+/g, '') : othername;

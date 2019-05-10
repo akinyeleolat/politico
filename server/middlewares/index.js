@@ -9,8 +9,6 @@ import validateCreateVote from './validateCreateVote';
 import verifyToken from './verifyToken';
 import verifyAdminToken from './verifyAdminToken';
 
-
-
 const middlewares = {
   validateSignUp,
   validateUserLogin,

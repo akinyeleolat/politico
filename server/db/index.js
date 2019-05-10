@@ -96,7 +96,6 @@ export const createTable = () => {
         reject(Error(err.message));
       }
       if (response) {
-        // db.end();
         resolve();
       }
     });
