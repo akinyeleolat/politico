@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Pool } from 'pg';
 import setup from '../config/config';
 
@@ -59,7 +60,7 @@ export const createTable = () => {
       approve_status INT NOT NULL,
       created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
       updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-           --Relationship-- 
+           --Relationship--
      FOREIGN KEY( office ) REFERENCES office( id ) ON DELETE CASCADE,
      FOREIGN KEY( party ) REFERENCES party( id ) ON DELETE CASCADE,
      FOREIGN KEY( candidate ) REFERENCES users( id ) ON DELETE CASCADE
@@ -73,7 +74,7 @@ export const createTable = () => {
      CONSTRAINT ID_VKEY PRIMARY KEY (office,createdBy),
       created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
       updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-           --Relationship-- 
+           --Relationship--
      FOREIGN KEY( createdBy ) REFERENCES users( id ) ON DELETE CASCADE,
      FOREIGN KEY( office ) REFERENCES office( id ) ON DELETE CASCADE,
      FOREIGN KEY( candidate ) REFERENCES users( id ) ON DELETE CASCADE
@@ -86,7 +87,7 @@ export const createTable = () => {
      evidence VARCHAR(255) NOT NULL,
      created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
      updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-             --Relationship-- 
+             --Relationship--
      FOREIGN KEY( createdBy ) REFERENCES users( id ) ON DELETE CASCADE,
      FOREIGN KEY( office ) REFERENCES office( id ) ON DELETE CASCADE
    );`;

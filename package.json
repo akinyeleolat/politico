@@ -4,17 +4,20 @@
   "description": "allows user, politician and electoral body to manage voting process and administration",
   "main": "app.js",
   "scripts": {
+    "build-server": "babel server --out-dir dist",
+    "build": "npm run clean && npm run build-server",
+    "clean": "rm -rf dist && mkdir dist",
     "pretest": "set NODE_ENV=test&& babel-node server/db/cleardb.js",
     "test": "set NODE_ENV=test&& npm run migrate &&  nyc mocha --require babel-core/register server/spec/* --timeout 500000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "babel-node": "babel-node --presets=env",
-    "start": "babel-node -- server/app.js",
+    "start": "node dist/app.js",
     "dev": "nodemon server/app.js --exec babel-node",
     "lint": "eslint ./ --fix",
-    "build": "babel src -d dist",
     "migrate": "babel-node server/db",
-    "reset":"babel-node server/db/cleardb.js && babel-node server/db",
-    "postinstall": "npm install babel-cli babel-preset-env babel-register"
+    "reset": "babel-node server/db/cleardb.js && babel-node server/db",
+    "postinstall": "npm install babel-cli babel-preset-env babel-register",
+    "heroku-postbuild": "npm run build && npm run migrate"
   },
   "repository": {
     "type": "git",
