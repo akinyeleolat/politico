@@ -52,7 +52,7 @@ class OfficeController {
   }
 
   /**
- * @function getAllOffice
+ * @function getAllOffice Get all office 
  * @memberof OfficeController
  * @static
  */
@@ -76,7 +76,7 @@ class OfficeController {
   }
 
   /**
- * @function getOffice
+ * @function getOffice Get specific office
  * @memberof OfficeController
  * @static
  */

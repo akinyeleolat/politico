@@ -23,15 +23,16 @@ app.get('/', (req, res) => {
   });
 });
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('*', (err, req, res, next) => {
-  const statusCode = 400;
-  res.status(statusCode).json({
-    success: statusCode,
-    error: err.message,
+app.use('/api/v1', router);
+app.use((req, res, next) => {
+  const error = new Error('requested resources not found');
+  error.status = 404;
+  res.status(error.status).send({
+    status: error.status,
+    error: error.message,
   });
   next();
 });
-app.use('/api/v1', router);
 app.listen(port, () => {
   console.log(`Running on port ${port}...`);
 });

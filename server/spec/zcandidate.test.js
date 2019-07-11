@@ -10,9 +10,15 @@ const request = supertest.agent(app);
 
 const { email, password } = user.signUpAdmin;
 let token;
+let partyId;
+let officeId;
 const authUser = {
   email,
   password,
+}
+const newOffice={
+  officeName: 'osun senatorial',
+  officeType: 'state',
 }
 before((done) => {
   request
@@ -35,19 +41,34 @@ before((done) => {
     .expect(201)
     .end((err, res) => {
       const partyData = res.body.data;
-      console.log(partyData);
+      partyId = partyData[0].party.id;
+      expect(res.status).to.equal(201);
+      if (err) done(err);
+      done();
+    });
+});
+before((done) => {
+  request
+    .post('/api/v1/offices')
+    .send(newOffice)
+    .set('token', token)
+    .set('Authorization', token)
+    .expect(201)
+    .end((err, res) => {
+      const officeData = res.body.data;
+      officeId = officeData[0].office.id;
       expect(res.status).to.equal(201);
       if (err) done(err);
       done();
     });
 });
 
-describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
+describe('ENROLLING CANDIDATE FOR AN OFFICE /candidate', () => {
   let newCandidate = '';
   it('EMPTY CANDIDATE DATA should return status 400', (done) => {
     const emptyOfficeData = {};
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(emptyOfficeData)
       .set('token', token)
       .set('Authorization', token)
@@ -57,7 +78,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Candidate  number that is NAN should return status 400', (done) => {
     const emptyOfficeData = {};
     request
-      .post('/api/v1/office/s/register')
+      .post('/api/v1/candidate')
       .send(emptyOfficeData)
       .set('token', token)
       .set('Authorization', token)
@@ -67,7 +88,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Candidate  id that is not valid should return status 400', (done) => {
     const emptyOfficeData = {};
     request
-      .post('/api/v1/office/23/register')
+      .post('/api/v1/candidate')
       .send(emptyOfficeData)
       .set('token', token)
       .set('Authorization', token)
@@ -77,7 +98,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Empty office in request body should return 400', (done) => {
     newCandidate = test.candidateData2;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
@@ -87,7 +108,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Empty party in request body should return 400', (done) => {
     newCandidate = test.candidateData3;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
@@ -97,7 +118,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Empty office should return 400', (done) => {
     newCandidate = test.candidateData4;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
@@ -107,7 +128,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('Office with spaces should return 400', (done) => {
     newCandidate = test.candidateData5;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
@@ -117,37 +138,54 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('party and office id that NAN should return 400', (done) => {
     newCandidate = test.candidateData6;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
       .expect(400)
       .end(done);
   });
-  it('Invalid office id should return 400', (done) => {
+  it('Invalid office id should return 404', (done) => {
     newCandidate = test.candidateData7;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
-      .expect(400)
+      .expect(404)
       .end(done);
   });
-  it('Invalid party Id should return 400', (done) => {
+  it('Invalid party Id should return 404', (done) => {
     newCandidate = test.candidateData8;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
-      .expect(400)
+      .expect(404)
       .end(done);
+  });
+  it('Enrolling candidate for an office  should return 201', (done) => {
+    newCandidate = {
+      office: officeId,
+      party: partyId,
+    }
+    request
+      .post('/api/v1/candidate')
+      .send(newCandidate)
+      .set('token', token)
+      .set('Authorization', token)
+      .expect(201)
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        if (err) done(err);
+        done();
+      });
   });
   it('Enrolling same office again should return 400', (done) => {
     newCandidate = test.candidateData9;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)
@@ -157,7 +195,7 @@ describe('ENROLLING CANDIDATE FOR AN OFFICE /office/:id/register', () => {
   it('should return  order in JSON format', (done) => {
     newCandidate = test.candidateData8;
     request
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/candidate')
       .send(newCandidate)
       .set('token', token)
       .set('Authorization', token)

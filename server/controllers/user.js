@@ -6,7 +6,7 @@ import db from '../db';
 
 class UserController {
   /**
- * @function signup
+ * @function signup create users accounts
  * @memberof UserController
  * @static
  */
@@ -15,7 +15,6 @@ class UserController {
     let {
       firstname, lastname, othername, email, phonenumber, passporturl, password,
     } = req.body;
-    // let { password } = req.body;
     firstname = firstname ? firstname.toString().replace(/\s+/g, '') : firstname;
     lastname = lastname ? lastname.toString().replace(/\s+/g, '') : lastname;
     othername = othername ? othername.toString().replace(/\s+/g, '') : othername;
@@ -71,7 +70,7 @@ class UserController {
       });
   }
   /**
-* @function login
+* @function login handle users login
 * @memberof UserController
 *
 * @param {Object} req - this is a request object that contains whatever is requested for
@@ -129,7 +128,7 @@ class UserController {
   }
 
   /**
- * @function getAllUsers
+ * @function getAllUsers Get all authenticated users
  * @memberof UserController
  * @static
  */
